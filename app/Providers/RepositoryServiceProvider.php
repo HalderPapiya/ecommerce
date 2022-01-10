@@ -21,6 +21,8 @@ use App\Interfaces\BlogRepositoryInterface;
 use App\Repositories\BlogRepository;
 use App\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\CustomerRepository;
+use App\Interfaces\CouponRepositoryInterface;
+use App\Repositories\CouponRepository;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -41,6 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(BannerRepositoryInterface::class, BannerRepository::class);
         $this->app->bind(BlogRepositoryInterface::class, BlogRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
+        $this->app->bind(CouponRepositoryInterface::class, CouponRepository::class);
     }
 
     /**
