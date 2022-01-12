@@ -8,7 +8,7 @@ jj
             <p>{{ $subTitle }}</p>
             {{-- <p>Category List</p> --}}
         </div>
-        <a href="{{ route('admin.address.create')}}" class="btn btn-primary pull-right">Add New</a>
+        <a href="{{ route('admin.bank.create')}}" class="btn btn-primary pull-right">Add New</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -23,29 +23,30 @@ jj
                             <tr>
                                 <th>Id</th>
                                 <th> Address Type </th>
-                                <th> Street </th>
-                                <th> City </th>
-                                <th> Pin Code </th>
-                                <th> State </th>
-                                <th> Country </th>
+                                <th> Bank Name </th>
+                                <th> beneficiary_name </th>
+                                <th> IFSC </th>
+                                <th> branch_name </th>
+                                <th> acount_no </th>
                                 <th> Status </th>
                                 <th style="width:100px; min-width:100px;" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($addresses as $key => $address)
+                            @foreach($banks as $key => $bank)
                                 <tr>
-                                    <td>{{ $address->id }}</td>
-                                    <td>{{ $address->type }}</td>
-                                    <td>{{ $address->city }}</td>
-                                    <td>{{ $address->pin_codce }}</td>
-                                    <td>{{ $address->state }}</td>
-                                    <td>{{ $address->country }}</td>
+                                    <td>{{ $bank->id }}</td>
+                                    <td>{{ $bank->type }}</td>
+                                    <td>{{ $bank->bank_name }}</td>
+                                    <td>{{ $bank->beneficiary_name }}</td>
+                                    <td>{{ $bank->IFSC }}</td>
+                                    <td>{{ $bank->branch_name }}</td>
+                                    <td>{{ $bank->acount_no }}</td>
                                     <td class="text-center">
                                         <div class="toggle-button-cover margin-auto">
                                             <div class="button-cover">
                                                 <div class="button-togglr b2" id="button-11">
-                                                    <input id="toggle-block" type="checkbox" name="status" class="checkbox" data-address_id="{{ $address['id'] }}" {{ $address['status'] == 1 ? 'checked' : '' }}>
+                                                    <input id="toggle-block" type="checkbox" name="status" class="checkbox" data-bank_id="{{ $bank['id'] }}" {{ $bank['status'] == 1 ? 'checked' : '' }}>
                                                     <div class="knobs"><span>Inactive</span></div>
                                                     <div class="layer"></div>
                                                 </div>
@@ -55,9 +56,9 @@ jj
                                     <td class="text-center">
                                     
                                         <div class="btn-group" role="group" aria-label="Second group">
-                                            <a href="{{ url('admin/address/edit', $address['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('admin/bank/edit', $bank['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.category.details', $category['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-eye"></i></a> --}}
-                                             <a href="javascript: void(0)" data-id="{{$address['id']}}" class="sa-remove btn btn-sm btn-danger edit-btn"><i class="fa fa-trash"></i></a>
+                                             <a href="javascript: void(0)" data-id="{{$bank['id']}}" class="sa-remove btn btn-sm btn-danger edit-btn"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -77,7 +78,7 @@ jj
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
     <script type="text/javascript">
     $('.sa-remove').on("click",function(){
-        var addressid = $(this).data('id');
+        var bankid = $(this).data('id');
         swal({
           title: "Are you sure?",
           text: "Your will not be able to recover the record!",
@@ -89,7 +90,7 @@ jj
         },
         function(isConfirm){
           if (isConfirm) {
-            window.location.href = "address/delete/"+addressid;
+            window.location.href = "bank/delete/"+bankid;
             } else {
               swal("Cancelled", "Record is safe", "error");
             }
@@ -98,7 +99,7 @@ jj
     </script>
     <script type="text/javascript">
         $('input[id="toggle-block"]').change(function() {
-            var address_id = $(this).data('address_id');
+            var bank_id = $(this).data('bank_id');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var check_status = 0;
           if($(this).is(":checked")){
@@ -109,8 +110,8 @@ jj
           $.ajax({
                 type:'POST',
                 dataType:'JSON',
-                url:"{{route('admin.address.updateStatus')}}",
-                data:{ _token: CSRF_TOKEN, id:address_id, status:check_status},
+                url:"{{route('admin.bank.updateStatus')}}",
+                data:{ _token: CSRF_TOKEN, id:bank_id, status:check_status},
                 success:function(response)
                 {
                   swal("Success!", response.message, "success");

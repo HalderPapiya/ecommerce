@@ -12,36 +12,48 @@
         <div class="col-md-8 mx-auto">
             <div class="tile">
                 <h3 class="tile-title">{{ $subTitle }}</h3>
-                <form action="{{ route('admin.banner.update') }}" method="POST" role="form" enctype="multipart/form-data">
+                <form action="{{ route('admin.address.update') }}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf
                     <div class="tile-body">
-                    <input type="hidden" name="id" value="{{ $targetBanner->id }}">
+                    <input type="hidden" name="id" value="{{ $targetAddress->id }}">
+                       
                         <div class="form-group">
-                            <label class="control-label" for="image">Image <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image"/>
-                            @error('image') {{ $message }} @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="title">Title <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" value="{{ old('title', $targetBanner->title) }}"/>
+                            <label class="control-label" for="type">Address Type <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('type') is-invalid @enderror" type="text" name="type" id="title" value="{{ old('title', $targetAddress->type) }}"/>
                             @error('title') {{ $message }} @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="description">Description <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('description') is-invalid @enderror" type="text" name="description" id="description" value="{{ old('description', $targetBanner->description) }}"/>
-                            @error('description') {{ $message }} @enderror
+                            <label class="control-label" for="street">Street <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('street') is-invalid @enderror" type="text" name="street" id="street" value="{{ old('street', $targetAddress->street) }}"/>
+                            @error('street') {{ $message }} @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="redirect_link">Url <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('redirect_link') is-invalid @enderror" type="text" name="redirect_link" id="redirect_link" value="{{ old('redirect_link', $targetBanner->redirect_link) }}"/>
-                            @error('redirect_link') {{ $message }} @enderror
+                            <label class="control-label" for="city">City <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('city') is-invalid @enderror" type="text" name="city" id="city" value="{{ old('city', $targetAddress->city) }}"/>
+                            @error('city') {{ $message }} @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="pin_code">Pincode <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('pin_code') is-invalid @enderror" type="text" name="pin_code" id="pin_code" value="{{ old('pin_code', $targetAddress->pin_code) }}"/>
+                            @error('pin_code') {{ $message }} @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="state">State <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('state') is-invalid @enderror" type="text" name="state" id="state" value="{{ old('state', $targetAddress->state) }}"/>
+                            @error('state') {{ $message }} @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="country">Country <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('country') is-invalid @enderror" type="text" name="country" id="country" value="{{ old('country', $targetAddress->country) }}"/>
+                            @error('country') {{ $message }} @enderror
                         </div>
                     </div>
                     
                     <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Banner</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Address</button>
                         &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-secondary" href="{{ route('admin.banner.list') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                        <a class="btn btn-secondary" href="{{ route('admin.address.list') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                     </div>
                 </form>
             </div>

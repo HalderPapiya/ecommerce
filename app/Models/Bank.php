@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Address extends Model
+
+class Bank extends Model
 {
+   
     use HasFactory,SoftDeletes;
 
-     protected $table = 'addresses';
+     protected $table = 'bank_details';
 
 	protected $fillable = [
-	  'user_id','type',  'street','city','pin_code','state', 'country','status'
+	   'user_id','type','bank_name','beneficiary_name', 'IFSC', 'branch_name', 'acount_no', 'status'
 	];
-
-	public function user()
-	{
-		return $this->belongsTo('App\Models\User', 'user_id', 'id');
-	}
 }

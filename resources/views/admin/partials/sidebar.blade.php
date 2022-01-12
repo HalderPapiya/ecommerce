@@ -91,7 +91,12 @@
                 <span class="app-menu__label">Address</span>
             </a>
         </li>
-
+        <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.bank.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Bank Details</span>
+            </a>
+        </li>
         <!-- {{-- <li>
             <a class="app-menu__item {{ sidebar_open(['admin.event']) }}"
                 href="{{ route('admin.event.index') }}"><i class="app-menu__icon fa fa-group"></i>

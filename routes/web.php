@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\SallerController;
 use App\Http\Controllers\Admin\AddressController;
+use App\Http\Controllers\Admin\BankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -180,5 +181,15 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::post('/update', [AddressController::class,'update'])->name('admin.address.update');
         Route::post('/updateStatus', [AddressController::class,'updateStatus'])->name('admin.address.updateStatus');
         Route::get('/delete/{id}', [AddressController::class,'destroy'])->name('admin.address.delete');
+    });
+
+    Route::group(['prefix' => 'bank'], function() {
+        Route::get('/', [BankController::class,'index'])->name('admin.bank.list');
+        Route::get('/create', [BankController::class,'create'])->name('admin.bank.create');
+        Route::post('/store', [BankController::class,'store'])->name('admin.bank.store');
+        Route::get('/edit/{id}', [BankController::class,'edit'])->name('admin.bank.edit');
+        Route::post('/update', [BankController::class,'update'])->name('admin.bank.update');
+        Route::post('/updateStatus', [BankController::class,'updateStatus'])->name('admin.bank.updateStatus');
+        Route::get('/delete/{id}', [BankController::class,'destroy'])->name('admin.bank.delete');
     });
 });
