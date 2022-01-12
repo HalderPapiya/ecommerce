@@ -11,6 +11,10 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\SallerController;
+use App\Http\Controllers\Admin\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,5 +140,45 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::post('/update', [CustomerController::class,'update'])->name('admin.customer.update');
         Route::post('/updateStatus', [CustomerController::class,'updateStatus'])->name('admin.customer.updateStatus');
         Route::get('/delete/{id}', [CustomerController::class,'destroy'])->name('admin.customer.delete');
+    });
+
+    Route::group(['prefix' => 'coupon'], function() {
+        Route::get('/', [CouponController::class,'index'])->name('admin.coupon.list');
+        Route::get('/create', [CouponController::class,'create'])->name('admin.coupon.create');
+        Route::post('/store', [CouponController::class,'store'])->name('admin.coupon.store');
+        Route::get('/edit/{id}', [CouponController::class,'edit'])->name('admin.coupon.edit');
+        Route::post('/update', [CouponController::class,'update'])->name('admin.coupon.update');
+        Route::post('/updateStatus', [CouponController::class,'updateStatus'])->name('admin.coupon.updateStatus');
+        Route::get('/delete/{id}', [CouponController::class,'destroy'])->name('admin.coupon.delete');
+    });
+
+    Route::group(['prefix' => 'brand'], function() {
+        Route::get('/', [BrandController::class,'index'])->name('admin.brand.list');
+        Route::get('/create', [BrandController::class,'create'])->name('admin.brand.create');
+        Route::post('/store', [BrandController::class,'store'])->name('admin.brand.store');
+        Route::get('/edit/{id}', [BrandController::class,'edit'])->name('admin.brand.edit');
+        Route::post('/update', [BrandController::class,'update'])->name('admin.brand.update');
+        Route::post('/updateStatus', [BrandController::class,'updateStatus'])->name('admin.brand.updateStatus');
+        Route::get('/delete/{id}', [BrandController::class,'destroy'])->name('admin.brand.delete');
+    });
+
+    Route::group(['prefix' => 'saller-management'], function() {
+        Route::get('/', [SallerController::class,'index'])->name('admin.saller-management.list');
+        Route::get('/create', [SallerController::class,'create'])->name('admin.saller-management.create');
+        Route::post('/store', [SallerController::class,'store'])->name('admin.saller-management.store');
+        Route::get('/edit/{id}', [SallerController::class,'edit'])->name('admin.saller-management.edit');
+        Route::post('/update', [SallerController::class,'update'])->name('admin.saller-management.update');
+        Route::post('/updateStatus', [SallerController::class,'updateStatus'])->name('admin.saller-management.updateStatus');
+        Route::get('/delete/{id}', [SallerController::class,'destroy'])->name('admin.saller-management.delete');
+    });
+
+    Route::group(['prefix' => 'address'], function() {
+        Route::get('/', [AddressController::class,'index'])->name('admin.address.list');
+        Route::get('/create', [AddressController::class,'create'])->name('admin.address.create');
+        Route::post('/store', [AddressController::class,'store'])->name('admin.address.store');
+        Route::get('/edit/{id}', [AddressController::class,'edit'])->name('admin.address.edit');
+        Route::post('/update', [AddressController::class,'update'])->name('admin.address.update');
+        Route::post('/updateStatus', [AddressController::class,'updateStatus'])->name('admin.address.updateStatus');
+        Route::get('/delete/{id}', [AddressController::class,'destroy'])->name('admin.address.delete');
     });
 });

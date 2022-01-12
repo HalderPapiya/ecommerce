@@ -12,24 +12,24 @@ class CouponRepository implements CouponRepositoryInterface
         return Coupon::all();
     }
 
-    public function getCouponById($bannerId)
+    public function getCouponById($couponId)
     {
-        return Banner::findOrFail($bannerId);
+        return Coupon::findOrFail($couponId);
     }
 
-    public function deleteBanner($bannerId)
+    public function deleteCoupon($couponId)
     {
-        return Banner::destroy($bannerId);
+        return Coupon::destroy($couponId);
     }
 
-    public function createBanner(array $bannerIdDetails)
+    public function createCoupon(array $couponIdDetails)
     {
-        return Banner::create($bannerIdDetails);
+        return Coupon::create($couponIdDetails);
     }
 
-    public function updateBanner($bannerId, array $newDetails) 
+    public function updateCoupon($couponId, array $newDetails) 
     {
-        return Banner::whereId($bannerId)->update($newDetails);
+        return Coupon::whereId($couponId)->update($newDetails);
     }
 
     // public function getFulfilledCategories()
@@ -37,9 +37,9 @@ class CouponRepository implements CouponRepositoryInterface
     //     return Order::where('is_fulfilled', true);
     // }
 
-    public function updateBannerStatus($bannerId, array $newDetails)
+    public function updateCouponStatus($couponId, array $newDetails)
     {
-        return Banner::whereId($bannerId)->update($newDetails);
+        return Coupon::whereId($couponId)->update($newDetails);
     }
 
 }

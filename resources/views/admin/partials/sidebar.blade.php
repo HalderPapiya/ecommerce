@@ -67,7 +67,32 @@
                 <span class="app-menu__label">Customer Management</span>
             </a>
         </li>
-        {{-- <li>
+        <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.coupon.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Coupon</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.brand.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Brand</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.saller-management.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Saller Management</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.address.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Address</span>
+            </a>
+        </li>
+
+        <!-- {{-- <li>
             <a class="app-menu__item {{ sidebar_open(['admin.event']) }}"
                 href="{{ route('admin.event.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Event Management</span>
@@ -120,7 +145,7 @@
                 href="{{ route('admin.settings') }}"><i class="app-menu__icon fa fa-cogs"></i>
                 <span class="app-menu__label">Site Settings</span>
             </a>
-        </li> --}}
+        </li> --}} -->
         
     </ul>
 </aside>

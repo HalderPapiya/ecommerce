@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Interfaces\CustomerRepositoryInterface;
+use App\Interfaces\SallerRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Models\Customer;
+use App\Models\Saller;
 use App\Http\Controllers\BaseController;
 
-class CustomerController extends BaseController
+class SallerController extends BaseController
 {
-    private CustomerRepositoryInterface $customerRepository;
+    private SallerRepositoryInterface $sallerRepository;
 
-    public function __construct(CustomerRepositoryInterface $customerRepository) 
+    public function __construct(SallerRepositoryInterface $sallerRepository) 
     {
-        $this->customerRepository = $customerRepository;
+        $this->sallerRepository = $sallerRepository;
     }
-
-   
     /**
      * Display a listing of the resource.
      *
@@ -27,11 +25,10 @@ class CustomerController extends BaseController
      */
     public function index()
     {
-        $this->setPageTitle('Customer', 'List of customer');
-        $customers = $this->customerRepository->getAllCustomers();
-        return view('admin.customer.index', compact('customers'));
+        $this->setPageTitle('Saller Management', 'List of saller management');
+        $sallers = $this->sallerRepository->getAllSallers();
+        return view('admin.saller-management.index', compact('sallers'));
 
-        
     }
 
     /**
@@ -41,8 +38,8 @@ class CustomerController extends BaseController
      */
     public function create()
     {
-        $this->setPageTitle('Customer', 'Add customer');
-        return view('admin.customer.add');
+        $this->setPageTitle('Saller', 'Add sallers');
+        return view('admin.saller-management.add');
     }
 
     /**
@@ -56,21 +53,19 @@ class CustomerController extends BaseController
         $this->validate($request, [
             'name' => 'required|max:191',
             'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+            'phone' => 'required'
         ]);
 
-        $customerDetails = $request->except(['_token']);
+        $sallerDetails = $request->except(['_token']);
         
-        $customer = $this->customerRepository->createCustomer($customerDetails);
+        $saller = $this->sallerRepository->createSaller($sallerDetails);
 
-        if (!$customer) {
-            return $this->responseRedirectBack('Error occurred while creating customer.', 'error', true, true);
+        if (!$saller) {
+            return $this->responseRedirectBack('Error occurred while creating Saller Management.', 'error', true, true);
         }
         else{
-            return $this->responseRedirect('admin.customer.list', 'Customer has been created successfully' ,'success',false, false);
+            return $this->responseRedirect('admin.saller-management.list', 'Saller Management has been created successfully' ,'success',false, false);
         }
-       
     }
 
     /**
@@ -81,7 +76,7 @@ class CustomerController extends BaseController
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -94,13 +89,12 @@ class CustomerController extends BaseController
         $customerId = $request->id;
         $newDetails = $request->except('_token');
 
-        $customer = $this->customerRepository->updateCustomerStatus($customerId,$newDetails);
+        $customer = $this->sallerRepository->updateSallerStatus($customerId,$newDetails);
 
         if ($customer) {
-            return response()->json(array('message'=>'Customer status has been successfully updated'));
+            return response()->json(array('message'=>'Saller Management status has been successfully updated'));
         }
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,16 +103,17 @@ class CustomerController extends BaseController
      */
     public function edit($id)
     {
-        $targetCustomer = $this->customerRepository->getCustomerById($id);
+        $targetSaller = $this->sallerRepository->getSallerById($id);
         
-        $this->setPageTitle('Customer', 'Edit Customer : '.$targetCustomer->title);
-        return view('admin.customer.edit', compact('targetCustomer'));
+        $this->setPageTitle('Saller Management', 'Edit Saller Management : '.$targetSaller->title);
+        return view('admin.saller-management.edit', compact('targetSaller'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -127,18 +122,18 @@ class CustomerController extends BaseController
             'name' => 'required|max:191',
             'email' => 'required',
             'phone' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
         ]);
 
-        $customerId = $request->id;
+        $sallerId = $request->id;
         $newDetails = $request->except('_token');
 
-        $customer = $this->customerRepository->updateCustomer($customerId, $newDetails);
+        $saller = $this->sallerRepository->updateSaller($sallerId, $newDetails);
 
-        if (!$customer) {
-            return $this->responseRedirectBack('Error occurred while updating customer.', 'error', true, true);
+        if (!$saller) {
+            return $this->responseRedirectBack('Error occurred while updating saller management.', 'error', true, true);
         } else {
-            return $this->responseRedirectBack('Customer has been updated successfully' ,'success',false, false);
+            return $this->responseRedirectBack('Saller Management has been updated successfully' ,'success',false, false);
         }
     }
 
@@ -150,12 +145,12 @@ class CustomerController extends BaseController
      */
     public function destroy($id)
     {
-        $customer = $this->customerRepository->deleteCustomer($id);
+        $saller = $this->sallerRepository->deleteSaller($id);
 
-        if (!$customer) {
+        if (!$saller) {
             return $this->responseRedirectBack('Error occurred while deleting customer.', 'error', true, true);
         } else {
-            return $this->responseRedirect('admin.customer.list', 'Customer has been deleted successfully' ,'success',false, false);
+            return $this->responseRedirect('admin.saller-management.list', 'Customer has been deleted successfully' ,'success',false, false);
         }
     }
 }

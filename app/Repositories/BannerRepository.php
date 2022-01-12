@@ -24,12 +24,46 @@ class BannerRepository implements BannerRepositoryInterface
 
     public function createBanner(array $bannerIdDetails)
     {
-        return Banner::create($bannerIdDetails);
+        $collection = collect($bannerIdDetails);
+
+        $Banner = new Banner;
+        $Banner->title = $collection['title'];
+        $Banner->description = $collection['description'];
+        $Banner->redirect_link = $collection['redirect_link'];
+
+        $profile_image = $collection['image'];
+        $imageName = time().".".$profile_image->getClientOriginalName();
+        $profile_image->move("banners/",$imageName);
+        $uploadedImage = $imageName;
+        $Banner->image = $uploadedImage;
+        
+        $Banner->save();
+
+        return $Banner;
+        // return Banner::create($bannerIdDetails);
     }
 
     public function updateBanner($bannerId, array $newDetails) 
     {
-        return Banner::whereId($bannerId)->update($newDetails);
+        // return Banner::whereId($bannerId)->update($newDetails);
+
+        // $collection = Banner::whereId($bannerId)->update($newDetails);
+        $collection = collect($newDetails)->except('_token'); 
+        $Banner = new Banner;
+        $Banner->title = $collection['title'];
+        $Banner->description = $collection['description'];
+        $Banner->redirect_link = $collection['redirect_link'];
+       
+        $profile_image = $collection['image'];
+        $imageName = time().".".$profile_image->getClientOriginalName();
+        $profile_image->move("banners/",$imageName);
+        $uploadedImage = $imageName;
+        $Banner->image = $uploadedImage;
+       
+
+        $Banner->save();
+
+        return $Banner;
     }
 
     // public function getFulfilledCategories()

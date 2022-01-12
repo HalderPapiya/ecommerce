@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Coupon extends Model
+class Address extends Model
 {
     use HasFactory,SoftDeletes;
 
-     protected $table = 'coupons';
+     protected $table = 'addresses';
 
 	protected $fillable = [
-	  'coupon_code', 'title', 'status', 'description','expiry_date', 'amount', 'type'
+	  'user_id','type', 'street','city','pin_code','state', 'country','status'
 	];
 }

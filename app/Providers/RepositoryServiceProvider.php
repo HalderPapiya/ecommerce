@@ -23,7 +23,12 @@ use App\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\CustomerRepository;
 use App\Interfaces\CouponRepositoryInterface;
 use App\Repositories\CouponRepository;
-
+use App\Interfaces\BrandRepositoryInterface;
+use App\Repositories\BrandRepository;
+use App\Interfaces\SallerRepositoryInterface;
+use App\Repositories\SallerRepository;
+use App\Interfaces\AddressRepositoryInterface;
+use App\Repositories\AddressRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -44,6 +49,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(BlogRepositoryInterface::class, BlogRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->bind(CouponRepositoryInterface::class, CouponRepository::class);
+        $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
+        $this->app->bind(SallerRepositoryInterface::class, SallerRepository::class);
+        $this->app->bind(AddressRepositoryInterface::class, AddressRepository::class);
     }
 
     /**
