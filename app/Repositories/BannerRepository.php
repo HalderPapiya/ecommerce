@@ -22,9 +22,9 @@ class BannerRepository implements BannerRepositoryInterface
         return Banner::destroy($bannerId);
     }
 
-    public function createBanner(array $bannerIdDetails)
+    public function createBanner(array $bannerDetails)
     {
-        $collection = collect($bannerIdDetails);
+        $collection = collect($bannerDetails);
 
         $Banner = new Banner;
         $Banner->title = $collection['title'];
@@ -53,7 +53,7 @@ class BannerRepository implements BannerRepositoryInterface
         $Banner->title = $collection['title'];
         $Banner->description = $collection['description'];
         $Banner->redirect_link = $collection['redirect_link'];
-       
+       if(has-)
         $profile_image = $collection['image'];
         $imageName = time().".".$profile_image->getClientOriginalName();
         $profile_image->move("banners/",$imageName);

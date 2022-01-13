@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use App\Models\Saller;
 use App\Http\Controllers\BaseController;
 
-class SallerController extends BaseController
+class SellerController extends BaseController
 {
     private SallerRepositoryInterface $sallerRepository;
 

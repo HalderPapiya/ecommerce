@@ -2,32 +2,32 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\AddressRepositoryInterface;
-use App\Models\Address;
+use App\Interfaces\ProductRepositoryInterface;
+use App\Models\Product;
 use Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Illuminate\Support\Facades\Cache;
 
-class AddressRepository implements AddressRepositoryInterface 
+class ProductRepository implements ProductRepositoryInterface 
 {
-    public function getAllAddresses()
+    public function getAllProducts()
     {
-        return Address::all();
+        return Product::all();
     }
 
-    public function getAddressById($addressId)
+    public function getProductById($productId)
     {
-        return Address::findOrFail($addressId);
+        return Product::findOrFail($productId);
     }
 
-    public function deleteAddress($addressId)
+    public function deleteProduct($productId)
     {
-        return Address::destroy($addressId);
+        return Product::destroy($productId);
     }
 
-    public function createAddress(array $addressDetails)
+    public function createProduct(array $productDetails)
     {
        
         // return Address::create($addressIdDetails);
@@ -43,7 +43,7 @@ class AddressRepository implements AddressRepositoryInterface
     // $address->save();
     // return $address;
 
-    $collection = collect($addressDetails);
+    $collection = collect($productDetails);
     // $userId=Auth::user()->id;
     $address = new Address;
     $address->street = $collection['street'];
@@ -60,9 +60,9 @@ class AddressRepository implements AddressRepositoryInterface
 
     }
 
-    public function updateAddress($addressId, array $newDetails) 
+    public function updateProduct($productId, array $newDetails) 
     {
-        return Address::whereId($addressId)->update($newDetails);
+        return Product::whereId($productId)->update($newDetails);
     }
 
     // public function getFulfilledCategories()
@@ -70,9 +70,9 @@ class AddressRepository implements AddressRepositoryInterface
     //     return Order::where('is_fulfilled', true);
     // }
 
-    public function updateAddressStatus($addressId, array $newDetails)
+    public function updateProductStatus($productId, array $newDetails)
     {
-        return Address::whereId($addressId)->update($newDetails);
+        return Product::whereId($productId)->update($newDetails);
     }
 
 }

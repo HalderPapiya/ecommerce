@@ -52,6 +52,9 @@ class BannerController extends BaseController
     {
         $this->validate($request, [
             'title' => 'required|max:191',
+            'image' => 'required',
+            'description' => 'required|jpeg,jpg',
+            'url' => 'required|url',
         ]);
 
         $bannerDetails = $request->except(['_token']);

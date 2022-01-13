@@ -21,18 +21,18 @@
                     </span> --}}
             </h3>
             <hr>
-            <form action="{{ route('admin.address.store') }}" method="POST" role="form" enctype="multipart/form-data">
+            <form action="{{ route('admin.product.store') }}" method="POST" role="form" enctype="multipart/form-data">
                 @csrf
                 <div class="tile-body">
                     <div class="form-group">
-                        <label for="user_type">User Type</label>
-                        <select class="form-control @error('user_type') is-invalid @enderror" name="user_type"
-                            id="user_type" value="{{ old('user_type') }}">
+                        <label for="category_level_one_id">category_level_one_id</label>
+                        <select class="form-control @error('category_level_one_id') is-invalid @enderror" name="category_level_one_id"
+                            id="category_level_one_id" value="{{ old('category_level_one_id') }}">
                             <option selected disabled>Select one</option>
                             <option value="customer">Customer</option>
                             <option value="seller">Seller</option>
                         </select>
-                        @error('user_type')
+                        @error('category_level_one_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -97,9 +97,9 @@
                 </div>
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save
-                        Address</button>
+                    Product</button>
                     &nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-secondary" href="{{ route('admin.address.list') }}"><i
+                    <a class="btn btn-secondary" href="{{ route('admin.product.list') }}"><i
                             class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                 </div>
             </form>

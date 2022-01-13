@@ -13,9 +13,10 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\SallerController;
+use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\BankController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -164,13 +165,13 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     });
 
     Route::group(['prefix' => 'saller-management'], function() {
-        Route::get('/', [SallerController::class,'index'])->name('admin.saller-management.list');
-        Route::get('/create', [SallerController::class,'create'])->name('admin.saller-management.create');
-        Route::post('/store', [SallerController::class,'store'])->name('admin.saller-management.store');
-        Route::get('/edit/{id}', [SallerController::class,'edit'])->name('admin.saller-management.edit');
-        Route::post('/update', [SallerController::class,'update'])->name('admin.saller-management.update');
-        Route::post('/updateStatus', [SallerController::class,'updateStatus'])->name('admin.saller-management.updateStatus');
-        Route::get('/delete/{id}', [SallerController::class,'destroy'])->name('admin.saller-management.delete');
+        Route::get('/', [SellerController::class,'index'])->name('admin.saller-management.list');
+        Route::get('/create', [SellerController::class,'create'])->name('admin.saller-management.create');
+        Route::post('/store', [SellerController::class,'store'])->name('admin.saller-management.store');
+        Route::get('/edit/{id}', [SellerController::class,'edit'])->name('admin.saller-management.edit');
+        Route::post('/update', [SellerController::class,'update'])->name('admin.saller-management.update');
+        Route::post('/updateStatus', [SellerController::class,'updateStatus'])->name('admin.saller-management.updateStatus');
+        Route::get('/delete/{id}', [SellerController::class,'destroy'])->name('admin.saller-management.delete');
     });
 
     Route::group(['prefix' => 'address'], function() {
@@ -191,5 +192,15 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::post('/update', [BankController::class,'update'])->name('admin.bank.update');
         Route::post('/updateStatus', [BankController::class,'updateStatus'])->name('admin.bank.updateStatus');
         Route::get('/delete/{id}', [BankController::class,'destroy'])->name('admin.bank.delete');
+    });
+
+    Route::group(['prefix' => 'product'], function() {
+        Route::get('/', [ProductController::class,'index'])->name('admin.product.list');
+        Route::get('/create', [ProductController::class,'create'])->name('admin.product.create');
+        Route::post('/store', [ProductController::class,'store'])->name('admin.product.store');
+        Route::get('/edit/{id}', [ProductController::class,'edit'])->name('admin.product.edit');
+        Route::post('/update', [ProductController::class,'update'])->name('admin.product.update');
+        Route::post('/updateStatus', [ProductController::class,'updateStatus'])->name('admin.product.updateStatus');
+        Route::get('/delete/{id}', [ProductController::class,'destroy'])->name('admin.product.delete');
     });
 });

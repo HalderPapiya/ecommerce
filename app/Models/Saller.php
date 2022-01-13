@@ -10,7 +10,7 @@ class Saller extends Model
 {
     use HasFactory,SoftDeletes;
 
-     protected $table = 'saller_managementes';
+     protected $table = 'sellers';
 
 	protected $fillable = [
 	   'name', 'email','phone','status'
