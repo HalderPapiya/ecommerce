@@ -78,10 +78,10 @@ class BankController extends BaseController
      */
     public function updateStatus(Request $request){
 
-        // $addressId = $request->id;
+        $bankId = $request->id;
         $newDetails = $request->except('_token');
 
-        $bank = $this->bankRepository->updateBankStatus($newDetails);
+        $bank = $this->bankRepository->updateBankStatus($bankId,$newDetails);
 
         if ($bank) {
             return response()->json(array('message'=>'Bank status has been successfully updated'));

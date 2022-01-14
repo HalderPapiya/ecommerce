@@ -51,38 +51,8 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="category_level_one_id">Category One</label>
-                        <select class="form-control @error('category_level_one_id') is-invalid @enderror" name="category_level_one_id"
-                            id="category_level_one_id" value="{{ old('category_level_one_id') }}">
-                            <option selected disabled>Select one</option>
-                            @foreach ($levelOneCategories as $categoryOne)
-                            <option value="{{$categoryOne->id}}" @if($targetProduct->category_level_one_id ==
-                                $categoryOne->id){{('selected')}}@endif>{{$categoryOne->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('user_type')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="category_level_one_id">Category One</label>
-                        <select class="form-control @error('category_level_one_id') is-invalid @enderror" name="category_level_one_id"
-                            id="category_level_one_id" value="{{ old('category_level_one_id') }}">
-                            <option selected disabled>Select one</option>
-                            @foreach ($levelOneCategories as $categoryOne)
-                            <option value="{{$categoryOne->id}}" @if($targetProduct->category_level_one_id ==
-                                $categoryOne->id){{('selected')}}@endif>{{$categoryOne->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('category_level_one_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
+                    
+                    
                     <div class="form-group">
                         <label for="category_level_two_id">Category Two</label>
                         <select class="form-control @error('category_level_two_id') is-invalid @enderror" name="category_level_two_id"
@@ -93,7 +63,7 @@
                                 $categoryTwo->id){{('selected')}}@endif>{{$categoryTwo->name}}</option>
                             @endforeach
                         </select>
-                        @error('category_level_two_id')
+                         @error('category_level_two_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -209,3 +179,88 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#category_level_one_id').on('change', function() {
+            var categoryId = $('#category_level_one_id').val();
+            $.ajax({
+                url: "{{route('admin.product.manage.category')}}",
+                type: 'POST',
+                data: {
+                    _token: '{{csrf_token()}}',
+                    val: categoryId
+                },
+                success: function(result) {
+                    var options = '<option value="" selected="" hidden="">Select Level-Two-Category</option>';
+                    $.each(result.sub, function(key, val) {
+                        options += '<option value="' + val.id + '">' + val.name + '</option>';
+                    });
+                    $('#category_level_two_id').empty().append(options);
+                    // $res->success = false;
+                }
+            });
+        });
+
+        $('#category_level_two_id').on('change', function() {
+            var categoryId = $('#category_level_two_id').val();
+            $.ajax({
+                url: "{{route('admin.product.manage.category.level-two')}}",
+                type: 'POST',
+                data: {
+                    _token: '{{csrf_token()}}',
+                    val: categoryId
+                },
+                success: function(result) {
+                    var options = '<option value="" selected="" hidden="">Select Level-Three-Category</option>';
+                    $.each(result.sub, function(key, val) {
+                        options += '<option value="' + val.id + '">' + val.name + '</option>';
+                    });
+                    $('#category_level_three_id').empty().append(options);
+                    // $res->success = false;
+                }
+            });
+        });
+
+        $('#category_level_three_id').on('change', function() {
+            var categoryId = $('#category_level_three_id').val();
+            $.ajax({
+                url: "{{route('admin.product.manage.category.level-three')}}",
+                type: 'POST',
+                data: {
+                    _token: '{{csrf_token()}}',
+                    val: categoryId
+                },
+                success: function(result) {
+                    var options = '<option value="" selected="" hidden="">Select Level-Four-Category</option>';
+                    $.each(result.sub, function(key, val) {
+                        options += '<option value="' + val.id + '">' + val.name + '</option>';
+                    });
+                    $('#category_level_four_id').empty().append(options);
+                    // $res->success = false;
+                }
+            });
+        });
+
+        $('#category_level_four_id').on('change', function() {
+            var categoryId = $('#category_level_four_id').val();
+            $.ajax({
+                url: "{{route('admin.product.manage.category.level-four')}}",
+                type: 'POST',
+                data: {
+                    _token: '{{csrf_token()}}',
+                    val: categoryId
+                },
+                success: function(result) {
+                    var options = '<option value="" selected="" hidden="">Select Level-Five-Category</option>';
+                    $.each(result.sub, function(key, val) {
+                        options += '<option value="' + val.id + '">' + val.name + '</option>';
+                    });
+                    $('#category_level_five_id').empty().append(options);
+                    // $res->success = false;
+                }
+            });
+        });
+    });
+</script>
+@endpush

@@ -104,7 +104,7 @@ class ProductController extends BaseController
         $productId = $request->id;
         $newDetails = $request->except('_token');
 
-        $product = $this->productRepository->updateProductProductStatus($cproductId,$newDetails);
+        $product = $this->productRepository->updateProductStatus($productId,$newDetails);
 
         if ($product) {
             return response()->json(array('message'=>'Product Management status has been successfully updated'));
@@ -173,5 +173,40 @@ class ProductController extends BaseController
         } else {
             return $this->responseRedirect('admin.product.list', 'Customer has been deleted successfully' ,'success',false, false);
         }
+    }
+    public function manage(Request $request)
+    {
+        $categoryid = $request->val;
+        // dd($categoryid);
+        $subcategories = LevelTwoCategory::where('parent_id', $categoryid)->get();
+        return response()->json(['sub' => $subcategories]);
+    }
+    public function manageLavelTwo(Request $request)
+    {
+        $categoryid = $request->val;
+        // dd($categoryid);
+        $subcategories = LevelThreeCategory::where('parent_id', $categoryid)->get();
+        return response()->json(['sub' => $subcategories]);
+    }
+    public function manageLavelThree(Request $request)
+    {
+        $categoryid = $request->val;
+        // dd($categoryid);
+        $subcategories = LevelFourCategory::where('parent_id', $categoryid)->get();
+        return response()->json(['sub' => $subcategories]);
+    }
+    public function manageLavelFour(Request $request)
+    {
+        $categoryid = $request->val;
+        // dd($categoryid);
+        $subcategories = LevelThreeCategory::where('parent_id', $categoryid)->get();
+        return response()->json(['sub' => $subcategories]);
+    }
+    public function manageLavelFive(Request $request)
+    {
+        $categoryid = $request->val;
+        // dd($categoryid);
+        $subcategories = LevelFourCategory::where('parent_id', $categoryid)->get();
+        return response()->json(['sub' => $subcategories]);
     }
 }
