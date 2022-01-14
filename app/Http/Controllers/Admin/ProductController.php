@@ -139,17 +139,17 @@ class ProductController extends BaseController
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:191',
-            'email' => 'required',
-            'phone' => 'required',
-            // 'address' => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|max:191',
+        //     'email' => 'required',
+        //     'phone' => 'required',
+        //     // 'address' => 'required',
+        // ]);
 
         $productId = $request->id;
         $newDetails = $request->except('_token');
 
-        $productproduct = $this->productRepository->updateProduct($productId, $newDetails);
+        $product = $this->productRepository->updateProduct($productId, $newDetails);
 
         if (!$product) {
             return $this->responseRedirectBack('Error occurred while updating product management.', 'error', true, true);
