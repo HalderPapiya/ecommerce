@@ -24,9 +24,6 @@ class CreateProductsTable extends Migration
             $table->bigInteger('seller_id');
             $table->string('name');
             $table->string('description');
-            $table->string('image_one');
-            $table->string('image_two');
-            $table->string('image_three');
             $table->tinyInteger('status')->default('1')->comment('1 = Active, 0 = Inactive');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

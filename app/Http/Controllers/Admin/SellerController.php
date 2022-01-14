@@ -86,12 +86,12 @@ class SellerController extends BaseController
      */
     public function updateStatus(Request $request){
 
-        $customerId = $request->id;
+        $sallerId = $request->id;
         $newDetails = $request->except('_token');
 
-        $customer = $this->sallerRepository->updateSallerStatus($customerId,$newDetails);
+        $saller = $this->sallerRepository->updateSallerStatus($sallerId,$newDetails);
 
-        if ($customer) {
+        if ($saller) {
             return response()->json(array('message'=>'Saller Management status has been successfully updated'));
         }
     }
@@ -148,9 +148,9 @@ class SellerController extends BaseController
         $saller = $this->sallerRepository->deleteSaller($id);
 
         if (!$saller) {
-            return $this->responseRedirectBack('Error occurred while deleting customer.', 'error', true, true);
+            return $this->responseRedirectBack('Error occurred while deleting saller.', 'error', true, true);
         } else {
-            return $this->responseRedirect('admin.saller-management.list', 'Customer has been deleted successfully' ,'success',false, false);
+            return $this->responseRedirect('admin.saller-management.list', 'Saller has been deleted successfully' ,'success',false, false);
         }
     }
 }
