@@ -29,8 +29,9 @@
                         <select class="form-control @error('category_level_one_id') is-invalid @enderror" name="category_level_one_id"
                             id="category_level_one_id" value="{{ old('category_level_one_id') }}">
                             <option selected disabled>Select one</option>
-                            <option value="customer">Customer</option>
-                            <option value="seller">Seller</option>
+                            @foreach($levelOneCategories as $levelOneCategorie)
+                            <option value="{{$levelOneCategorie->id}}">{{$levelOneCategorie->name}}</option>
+                            @endforeach
                         </select>
                         @error('category_level_one_id')
                         <span class="invalid-feedback" role="alert">
@@ -40,6 +41,110 @@
                     </div>
                 </div>
                 <div class="tile-body">
+                    <div class="form-group">
+                        <label for="category_level_two_id">category_level_two_id</label>
+                        <select class="form-control @error('category_level_two_idcategory_level_two_id') is-invalid @enderror" name="category_level_two_id"
+                            id="category_level_two_id" value="{{ old('category_level_two_id') }}">
+                            <option selected disabled>Select one</option>
+                            @foreach($levelTwoCategories as $levelTwoCategorie)
+                            <option value="{{$levelTwoCategorie->id}}">{{$levelTwoCategorie->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('category_level_two_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label for="category_level_three_id">category_level_three_id</label>
+                        <select class="form-control @error('category_level_three_id') is-invalid @enderror" name="category_level_three_id"
+                            id="category_level_three_id" value="{{ old('category_level_three_id') }}">
+                            <option selected disabled>Select one</option>
+                            @foreach($levelThreeCategories as $levelThreeCategorie)
+                            <option value="{{$levelThreeCategorie->id}}">{{$levelThreeCategorie->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('category_level_three_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label for="category_level_four_id">category_level_four_id</label>
+                        <select class="form-control @error('category_level_four_id') is-invalid @enderror" name="category_level_four_id"
+                            id="category_level_four_id" value="{{ old('category_level_four_id') }}">
+                            <option selected disabled>Select one</option>
+                            @foreach($levelFourCategories as $levelFourCategorie)
+                            <option value="{{$levelFourCategorie->id}}">{{$levelFourCategorie->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('category_level_four_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label for="category_level_five_id">category_level_five_id</label>
+                        <select class="form-control @error('category_level_five_id') is-invalid @enderror" name="category_level_five_id"
+                            id="category_level_five_id" value="{{ old('category_level_five_id') }}">
+                            <option selected disabled>Select one</option>
+                            @foreach($levelFiveCategories as $levelFiveCategorie)
+                            <option value="{{$levelFiveCategorie->id}}">{{$levelFiveCategorie->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('category_level_five_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label for="brand_id">Brand</label>
+                        <select class="form-control @error('brand_id') is-invalid @enderror" name="brand_id"
+                            id="brand_id" value="{{ old('brand_id') }}">
+                            <option selected disabled>Select one</option>
+                            @foreach($brands as $brand)
+                            <option value="{{$brand->id}}">{{$brand->name}}</option> 
+                            @endforeach
+                            
+                        </select>
+                        @error('brand_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="tile-body">
+                    <div class="form-group">
+                        <label for="seller_id">Seller</label>
+                        <select class="form-control @error('seller_id') is-invalid @enderror" name="seller_id"
+                            id="seller_id" value="{{ old('seller_id') }}">
+                            <option selected disabled>Select one</option>
+                            @foreach($sellers as $seller)
+                            <option value="{{$seller->id}}">{{$seller->name}}</option> 
+                            @endforeach
+                            
+                        </select>
+                        @error('seller_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+              <!--   <div class="tile-body">
                     <input type="hidden" name="user_id">
                     <div class="form-group">
                         <label class="control-label" for="type">Address Type <span class="m-l-5 text-danger">
@@ -51,50 +156,33 @@
                         <input type="radio" id="other" name="type" value="Other">
                         <label for="other">Other</label>
                     </div>
-                </div>
+                </div> -->
                 <div class="tile-body">
                     <div class="form-group">
-                        <label class="control-label" for="street">Street <span class="m-l-5 text-danger">
+                        <label class="control-label" for="name">Name <span class="m-l-5 text-danger">
                                 *</span></label>
-                        <input class="form-control @error('street') is-invalid @enderror" type="text" name="street"
-                            id="street" value="{{ old('street') }}" />
-                        @error('street') {{ $message ?? '' }} @enderror
+                        <input class="form-control @error('name') is-invalid @enderror" type="text" name="name"
+                            id="name" value="{{ old('name') }}" />
+                        @error('name') {{ $message ?? '' }} @enderror
                     </div>
                 </div>
                 <div class="tile-body">
                     <div class="form-group">
-                        <label class="control-label" for="city">City <span class="m-l-5 text-danger"> *</span></label>
-                        <input class="form-control @error('city') is-invalid @enderror" type="text" name="city"
-                            id="city" value="{{ old('city') }}" />
-                        @error('city') {{ $message ?? '' }} @enderror
-                    </div>
-                </div>
-                <div class="tile-body">
-                    <div class="form-group">
-                        <label class="control-label" for="pin_code">Pin Code <span class="m-l-5 text-danger">
+                        <label class="control-label" for="description">Description <span class="m-l-5 text-danger">
                                 *</span></label>
-                        <input class="form-control @error('pin_code') is-invalid @enderror" type="text" name="pin_code"
-                            id="pin_code" value="{{ old('pin_code') }}" />
-                        @error('pin_code') {{ $message ?? '' }} @enderror
+                        <input class="form-control @error('description') is-invalid @enderror" type="text" name="description"
+                            id="description" value="{{ old('description') }}" />
+                        @error('description') {{ $message ?? '' }} @enderror
                     </div>
                 </div>
-                <div class="tile-body">
+                <!-- <div class="tile-body">
                     <div class="form-group">
-                        <label class="control-label" for="state">State <span class="m-l-5 text-danger"> *</span></label>
-                        <input class="form-control @error('state') is-invalid @enderror" type="text" name="state"
-                            id="state" value="{{ old('state') }}" />
-                        @error('state') {{ $message ?? '' }} @enderror
+                        <label class="control-label" for="image">Image <span class="m-l-5 text-danger"> *</span></label>
+                        <input class="form-control @error('image') is-invalid @enderror" type="text" name="image"
+                            id="image" value="{{ old('image') }}" />
+                        @error('image') {{ $message ?? '' }} @enderror
                     </div>
-                </div>
-                <div class="tile-body">
-                    <div class="form-group">
-                        <label class="control-label" for="country">Country <span class="m-l-5 text-danger">
-                                *</span></label>
-                        <input class="form-control @error('country') is-invalid @enderror" type="text" name="country"
-                            id="country" value="{{ old('country') }}" />
-                        @error('country') {{ $message ?? '' }} @enderror
-                    </div>
-                </div>
+                </div> -->
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save
                     Product</button>

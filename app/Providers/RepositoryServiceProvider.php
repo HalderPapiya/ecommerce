@@ -31,6 +31,8 @@ use App\Interfaces\AddressRepositoryInterface;
 use App\Repositories\AddressRepository;
 use App\Interfaces\BankRepositoryInterface;
 use App\Repositories\BankRepository;
+use App\Interfaces\ProductRepositoryInterface;
+use App\Repositories\ProductRepository;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -56,6 +58,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SallerRepositoryInterface::class, SallerRepository::class);
         $this->app->bind(AddressRepositoryInterface::class, AddressRepository::class);
         $this->app->bind(BankRepositoryInterface::class, BankRepository::class);
+        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 
     /**

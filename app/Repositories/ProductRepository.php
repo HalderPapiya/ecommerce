@@ -30,7 +30,7 @@ class ProductRepository implements ProductRepositoryInterface
     public function createProduct(array $productDetails)
     {
        
-        // return Address::create($addressIdDetails);
+        return Product::create($productDetails);
     //     $address = new Address;
     //     $address->street = $request->input('street');
     //     $address->city = $request->input('city');
@@ -43,20 +43,20 @@ class ProductRepository implements ProductRepositoryInterface
     // $address->save();
     // return $address;
 
-    $collection = collect($productDetails);
-    // $userId=Auth::user()->id;
-    $address = new Address;
-    $address->street = $collection['street'];
-    $address->user_type = $collection['user_type'];
-    $address->city = $collection['city'];
-    $address->state = $collection['state'];
-    $address->pin_code = $collection['pin_code'];
-    $address->country = $collection['country'];
-    $address->type = $collection['type'];
-    $address->user_id =  Auth::user()->id;
-    $address->save();
-    // dd($address);
-    return $address;
+    // $collection = collect($productDetails);
+    // // $userId=Auth::user()->id;
+    // $address = new Address;
+    // $address->street = $collection['street'];
+    // $address->user_type = $collection['user_type'];
+    // $address->city = $collection['city'];
+    // $address->state = $collection['state'];
+    // $address->pin_code = $collection['pin_code'];
+    // $address->country = $collection['country'];
+    // $address->type = $collection['type'];
+    // $address->user_id =  Auth::user()->id;
+    // $address->save();
+    // // dd($address);
+    // return $address;
 
     }
 

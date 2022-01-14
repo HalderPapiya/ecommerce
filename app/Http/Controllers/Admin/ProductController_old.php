@@ -9,7 +9,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Http\Controllers\BaseController;
 use App\Models\Product;
-use App\Models\LevelOneCategory;
 use App\Models\LevelTwoCategory;
 use App\Models\LevelThreeCategory;
 use App\Models\LevelFourCategory;
@@ -47,7 +46,7 @@ class ProductController extends BaseController
     public function create()
     {
         $this->setPageTitle('ProductProduct', 'Add Product');
-        $levelOneCategories= LevelOneCategory::get();
+        $levelOneCategories= Category::get();
         $levelTwoCategories= LevelTwoCategory::get();
         $levelThreeCategories= LevelThreeCategory::get();
         $levelFourCategories= LevelFourCategory::get();
@@ -65,18 +64,18 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|max:191',
-        //     'email' => 'required',
-        //     'phone' => 'required'
-        // ]);
+        $this->validate($request, [
+            'name' => 'required|max:191',
+            'email' => 'required',
+            'phone' => 'required'
+        ]);
 
         $productDetails = $request->except(['_token']);
         
-        $product = $this->productRepository->createProduct($productDetails);
+        $productproduct = $this->productRepository->createProductProductProduct($productDetails);
 
         if (!$product) {
-            return $this->responseRedirectBack('Error occurred while creating Product Management.', 'error', true, true);
+            return $this->responseRedirectBack('Error occurred while creating ProductProduct Management.', 'error', true, true);
         }
         else{
             return $this->responseRedirect('admin.product.list', 'Product Management has been created successfully' ,'success',false, false);
@@ -119,15 +118,9 @@ class ProductController extends BaseController
     public function edit($id)
     {
         $targetProduct = $this->productRepository->getProductById($id);
-        $levelOneCategories= LevelOneCategory::get();
-        $levelTwoCategories= LevelTwoCategory::get();
-        $levelThreeCategories= LevelThreeCategory::get();
-        $levelFourCategories= LevelFourCategory::get();
-        $levelFiveCategories= LevelFiveCategory::get();
-        $brands= Brand::get();
-        $sellers= Saller::get();
+        
         $this->setPageTitle('ProductProduct Management', 'Edit ProductProduct Management : '.$targetProduct->title);
-        return view('admin.product.edit', compact('targetProduct','levelOneCategories','levelTwoCategories','levelThreeCategories','levelFourCategories','levelFiveCategories','brands','sellers'));
+        return view('admin.product.edit', compact('targetProduct'));
     }
 
     /**
