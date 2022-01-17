@@ -120,19 +120,7 @@
                         @enderror
                     </div>
                 </div>
-              <!--   <div class="tile-body">
-                    <input type="hidden" name="user_id">
-                    <div class="form-group">
-                        <label class="control-label" for="type">Address Type <span class="m-l-5 text-danger">
-                                *</span></label><br>
-                        <input type="radio" id="home" name="type" value="Home">
-                        <label for="home">Home</label>
-                        <input type="radio" id="work" name="type" value="Work">
-                        <label for="work">Work</label>
-                        <input type="radio" id="other" name="type" value="Other">
-                        <label for="other">Other</label>
-                    </div>
-                </div> -->
+             
                 <div class="tile-body">
                     <div class="form-group">
                         <label class="control-label" for="name">Name <span class="m-l-5 text-danger">
@@ -151,14 +139,14 @@
                         @error('description') {{ $message ?? '' }} @enderror
                     </div>
                 </div>
-                <!-- <div class="tile-body">
+                <div class="tile-body">
                     <div class="form-group">
                         <label class="control-label" for="image">Image <span class="m-l-5 text-danger"> *</span></label>
-                        <input class="form-control @error('image') is-invalid @enderror" type="text" name="image"
-                            id="image" value="{{ old('image') }}" />
+                        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image[]"
+                            id="image" value="{{ old('image') }}"  multiple/>
                         @error('image') {{ $message ?? '' }} @enderror
                     </div>
-                </div> -->
+                </div>
                 <div class="tile-footer">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save
                     Product</button>

@@ -45,18 +45,60 @@ class ProductRepository implements ProductRepositoryInterface
 
     // $collection = collect($productDetails);
     // // $userId=Auth::user()->id;
-    // $address = new Address;
-    // $address->street = $collection['street'];
-    // $address->user_type = $collection['user_type'];
-    // $address->city = $collection['city'];
-    // $address->state = $collection['state'];
-    // $address->pin_code = $collection['pin_code'];
-    // $address->country = $collection['country'];
-    // $address->type = $collection['type'];
-    // $address->user_id =  Auth::user()->id;
-    // $address->save();
+   
+    // $product = new Product;
+    // $product->category_level_one_id = $collection['category_level_one_id'];
+    // $product->category_level_two_id = $collection['category_level_two_id'];
+    // $product->category_level_three_id = $collection['category_level_three_id'];
+    // $product->category_level_four_id = $collection['category_level_four_id'];
+    // $product->category_level_five_id = $collection['category_level_five_id'];
+    // $product->seller_id = $collection['seller_id'];
+    // $product->name = $collection['name'];
+    // $product->description = $collection['description'];
+    // $product->status = $collection['status'];
+   
+    // $product->save();
     // // dd($address);
-    // return $address;
+    // return $product;
+
+
+   
+
+
+    // $image = new Image;
+    //     if($request->hasfile('image'))
+    //     {
+    //        foreach($request->file('image') as $key => $file)
+    //        {
+    //            $path = $file->store('product/image');
+    //            $name = $file->getClientOriginalName();
+    
+    //            $insert[$key]['image'] = $name;
+    //         //    $insert[$key]['path'] = $path;
+    
+    //        }
+    //     }
+    //     Image::create([
+        
+    //         'image' =>$insert
+
+    //     ]);
+
+    //     $product = new Product;
+    //     $collection = collect($productDetails);
+
+    //     Product::create([
+    //         $product->category_level_one_id => $collection['category_level_one_id'],
+    //         $product->category_level_two_id => $collection['category_level_two_id'],
+    //         $product->category_level_three_id => $collection['category_level_three_id'],
+    //         $product->category_level_four_id => $collection['category_level_four_id'],
+    //         $product->category_level_five_id => $collection['category_level_five_id'],
+    //         $product->seller_id => $collection['seller_id'],
+    //         $product->name => $collection['name'],
+    //         $product->description => $collection['description'],
+    //         $product->status => $collection['status'],
+    //     ]);
+
 
     }
 

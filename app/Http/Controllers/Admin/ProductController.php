@@ -16,6 +16,7 @@ use App\Models\LevelFourCategory;
 use App\Models\LevelFiveCategory;
 use App\Models\Brand;
 use App\Models\Saller;
+use App\Models\Image;
 
 
 class ProductController extends BaseController
@@ -71,9 +72,41 @@ class ProductController extends BaseController
         //     'phone' => 'required'
         // ]);
 
-        $productDetails = $request->except(['_token']);
+        // $productDetails = $request->except(['_token']);
         
-        $product = $this->productRepository->createProduct($productDetails);
+        // $product = $this->productRepository->createProduct($productDetails);
+
+        
+    $product = new Product;
+
+    $product->category_level_one_id = $request['category_level_one_id'];
+    $product->category_level_two_id = $request['category_level_two_id'];
+    $product->category_level_three_id = $request['category_level_three_id'];
+    $product->category_level_four_id =$request['category_level_four_id'];
+    $product->category_level_five_id = $request['category_level_five_id'];
+    $product->seller_id = $request['seller_id'];
+    $product->brand_id = $request['brand_id'];
+    $product->name = $request['name'];
+    $product->description = $request['description'];
+    $product->save();
+    $product_id = $product->id;
+    // dd($product_id);
+    if($request->hasfile('image')){
+        $Images = [];
+        foreach ($request->file('image') as $file) {
+            $imagePath = $file->store('product/image');
+            // $imagePath = imageUpload($file, 'ladyAdvertisement');
+            $Images[] = [
+                'product_id' => $product_id,
+                'image' => $imagePath,
+            ];
+        }
+        if(count($Images) > 0){
+            Image::insert($Images);
+        }
+    }
+
+
 
         if (!$product) {
             return $this->responseRedirectBack('Error occurred while creating Product Management.', 'error', true, true);
@@ -116,7 +149,7 @@ class ProductController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $targetProduct = $this->productRepository->getProductById($id);
         $levelOneCategories= LevelOneCategory::get();
@@ -126,6 +159,8 @@ class ProductController extends BaseController
         $levelFiveCategories= LevelFiveCategory::get();
         $brands= Brand::get();
         $sellers= Saller::get();
+        $images = Image::where('product_id', $id)->get();
+        dd($images);
         $this->setPageTitle('ProductProduct Management', 'Edit ProductProduct Management : '.$targetProduct->title);
         return view('admin.product.edit', compact('targetProduct','levelOneCategories','levelTwoCategories','levelThreeCategories','levelFourCategories','levelFiveCategories','brands','sellers'));
     }

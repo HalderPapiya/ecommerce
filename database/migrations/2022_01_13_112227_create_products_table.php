@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('brand_id');
             $table->bigInteger('seller_id');
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->tinyInteger('status')->default('1')->comment('1 = Active, 0 = Inactive');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
