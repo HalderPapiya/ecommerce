@@ -25,7 +25,7 @@
                 @csrf
                 <div class="tile-body">
                     <div class="form-group">
-                        <label for="category_level_one_id">category_level_one_id</label>
+                        <label for="category_level_one_id">Category Level One</label>
                         <select class="form-control @error('category_level_one_id') is-invalid @enderror" name="category_level_one_id"
                             id="category_level_one_id" value="{{ old('category_level_one_id') }}">
                             <option selected disabled>Select one</option>
@@ -42,8 +42,8 @@
                 </div>
                 <div class="tile-body">
                     <div class="form-group">
-                        <label for="category_level_two_id">category_level_two_id</label>
-                        <select class="form-control @error('category_level_two_idcategory_level_two_id') is-invalid @enderror" name="category_level_two_id"
+                        <label for="category_level_two_id">Category Level Two</label>
+                        <select class="form-control @error('category_level_two_id') is-invalid @enderror" name="category_level_two_id"
                             id="category_level_two_id" value="{{ old('category_level_two_id') }}">
                             <option selected disabled>Select one</option>
                            
@@ -53,7 +53,7 @@
                 </div>
                 <div class="tile-body">
                     <div class="form-group">
-                        <label for="category_level_three_id">category_level_three_id</label>
+                        <label for="category_level_three_id">Category Level Three</label>
                         <select class="form-control @error('category_level_three_id') is-invalid @enderror" name="category_level_three_id"
                             id="category_level_three_id" value="{{ old('category_level_three_id') }}">
                             <option selected disabled>Select one</option>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="tile-body">
                     <div class="form-group">
-                        <label for="category_level_four_id">category_level_four_id</label>
+                        <label for="category_level_four_id">Category Level Four</label>
                         <select class="form-control @error('category_level_four_id') is-invalid @enderror" name="category_level_four_id"
                             id="category_level_four_id" value="{{ old('category_level_four_id') }}">
                             <option selected disabled>Select one</option>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="tile-body">
                     <div class="form-group">
-                        <label for="category_level_five_id">category_level_five_id</label>
+                        <label for="category_level_five_id">Category Level Five</label>
                         <select class="form-control @error('category_level_five_id') is-invalid @enderror" name="category_level_five_id"
                             id="category_level_five_id" value="{{ old('category_level_five_id') }}">
                             <option selected disabled>Select one</option>

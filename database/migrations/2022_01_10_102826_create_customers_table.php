@@ -19,7 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->tinyInteger('status')->default('1')->comment('1 = Active, 0 = Inactive');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

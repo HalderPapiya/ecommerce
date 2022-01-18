@@ -5,6 +5,17 @@
 @extends('admin.app')
 @section('title') Dashboard @endsection
 @section('content')
+@php
+
+$categoryLvlOne = App\Models\LevelOneCategory::where('status','1')->get();
+$categoryLvlTwo = App\Models\LevelTwoCategory::where('status','1')->get();
+$categoryLvlThree = App\Models\LevelThreeCategory::where('status','1')->get();
+$categoryLvlFour = App\Models\LevelFourCategory::where('status','1')->get();
+$categoryLvlFive = App\Models\LevelFiveCategory::where('status','1')->get();
+$brands = App\Models\Brand::where('status','1')->get();
+$products = App\Models\Product::where('status','1')->get();
+
+@endphp
 <style type="text/css">
     .row-md-body.no-nav {
     margin-top: 70px;
@@ -18,6 +29,71 @@
     </div>
 </div>
     <div class="row section-mg row-md-body no-nav">
+       
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>Category Leve One</h4>
+                    <p><b> {{count($categoryLvlOne)}} </b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>Category Leve Two</h4>
+                    <p><b>{{count($categoryLvlTwo)}} </b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>Category Leve Three</h4>
+                    <p><b>{{count($categoryLvlThree)}} </b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>Category Leve Four</h4>
+                    <p><b>{{count($categoryLvlFour)}} </b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>Category Leve Five</h4>
+                    <p><b>{{count($categoryLvlFive)}} </b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>Brand</h4>
+                    <p><b>{{count($brands)}} </b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+            <i class="icon fa fa-files-o fa-3x"></i>
+                <div class="info">
+                    <h4>product</h4>
+                    <p><b>{{count($products)}} </b></p>
+                </div>
+            </div>
+        </div>
+       
        
     </div>
 @endsection

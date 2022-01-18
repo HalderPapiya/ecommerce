@@ -53,8 +53,12 @@ class BankController extends BaseController
     {
         // dd($request->all());
         // dd($userId);
+
         $this->validate($request, [
-            // 'title' => 'required|max:191',
+            'bank_name' => 'required|max:191',
+            'beneficiary_name' => 'required|max:191',
+            'branch_name' => 'required|max:191',
+            'acount_no' => 'required|max:191',
         ]);
         $userId =  Auth::user()->id;
         
@@ -123,7 +127,10 @@ class BankController extends BaseController
     public function update(Request $request)
     {
         $this->validate($request, [
-            // 'title' => 'required|max:191',
+            'bank_name' => 'required|max:191',
+            'beneficiary_name' => 'required|max:191',
+            'branch_name' => 'required|max:191',
+            'acount_no' => 'required|max:191',
         ]);
 
         $bankId = $request->id;

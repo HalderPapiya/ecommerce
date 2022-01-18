@@ -47,6 +47,7 @@ class ProductController extends BaseController
      */
     public function create()
     {
+       
         $this->setPageTitle('ProductProduct', 'Add Product');
         $levelOneCategories= LevelOneCategory::get();
         $levelTwoCategories= LevelTwoCategory::get();
@@ -66,11 +67,18 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|max:191',
-        //     'email' => 'required',
-        //     'phone' => 'required'
-        // ]);
+        $this->validate($request, [
+            'category_level_one_id' => 'required',
+            'category_level_two_id' => 'required',
+            'category_level_three_id' => 'required',
+            'category_level_four_id' => 'required',
+            'category_level_five_id' => 'required',
+            'brand_id' => 'required',
+            'seller_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
 
         // $productDetails = $request->except(['_token']);
         
@@ -152,6 +160,18 @@ class ProductController extends BaseController
      */
     public function edit(Request $request, $id)
     {
+        $this->validate($request, [
+            'category_level_one_id' => 'required',
+            'category_level_two_id' => 'required',
+            'category_level_three_id' => 'required',
+            'category_level_four_id' => 'required',
+            'category_level_five_id' => 'required',
+            'brand_id' => 'required',
+            'seller_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
         $targetProduct = $this->productRepository->getProductById($id);
         $levelOneCategories= LevelOneCategory::get();
         $levelTwoCategories= LevelTwoCategory::get();

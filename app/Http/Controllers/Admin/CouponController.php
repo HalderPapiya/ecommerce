@@ -55,8 +55,13 @@ class CouponController extends BaseController
     {
         $this->validate($request, [
             'title' => 'required|max:191',
+            'coupon_code' => 'required',
+            'description' => 'required',
+            'expiry_date' => 'required',
+            'amount' => 'required',
+            'type' => 'required',
         ]);
-
+       
         $couponDetails = $request->except(['_token']);
         
         $coupon = $this->couponRepository->createCoupon($couponDetails);
@@ -122,6 +127,11 @@ class CouponController extends BaseController
     {
         $this->validate($request, [
             'title' => 'required|max:191',
+            'coupon_code' => 'required',
+            'description' => 'required',
+            'expiry_date' => 'required',
+            'amount' => 'required',
+            'type' => 'required',
         ]);
 
         $couponId = $request->id;

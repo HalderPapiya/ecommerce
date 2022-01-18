@@ -130,7 +130,13 @@ class AddressController extends BaseController
     public function update(Request $request)
     {
         $this->validate($request, [
-            // 'title' => 'required|max:191',
+            'type' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'state' => 'required',
+            'country' => 'required',
+            'user_type' => 'required',
         ]);
 
         $addressId = $request->id;

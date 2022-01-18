@@ -1,13 +1,13 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
     <ul class="app-menu">
-        {{-- <li>
+        <li>
             <a class="app-menu__item  {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
         </li>
         
-        <li>
+        {{--<li>
             <a class="app-menu__item {{ sidebar_open(['admin.users']) }}"
                 href="{{ route('admin.users.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">User Management</span>
@@ -15,8 +15,20 @@
         </li> --}}
         <li>
             <a class="app-menu__item"
+                href="{{ route('admin.banner.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Banner</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.blog.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Blog</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item"
                 href="{{ route('admin.category.list') }}"><i class="app-menu__icon fa fa-group"></i>
-                <span class="app-menu__label">Category</span>
+                <span class="app-menu__label">Level One Category</span>
             </a>
         </li>
          <li>
@@ -45,30 +57,6 @@
         </li>
         <li>
             <a class="app-menu__item"
-                href="{{ route('admin.setting.list') }}"><i class="app-menu__icon fa fa-group"></i>
-                <span class="app-menu__label">Setting</span>
-            </a>
-        </li>
-        <li>
-            <a class="app-menu__item"
-                href="{{ route('admin.banner.list') }}"><i class="app-menu__icon fa fa-group"></i>
-                <span class="app-menu__label">Banner</span>
-            </a>
-        </li>
-        <li>
-            <a class="app-menu__item"
-                href="{{ route('admin.blog.list') }}"><i class="app-menu__icon fa fa-group"></i>
-                <span class="app-menu__label">Blog</span>
-            </a>
-        </li>
-         <li>
-            <a class="app-menu__item"
-                href="{{ route('admin.customer.list') }}"><i class="app-menu__icon fa fa-group"></i>
-                <span class="app-menu__label">Customer Management</span>
-            </a>
-        </li>
-        <li>
-            <a class="app-menu__item"
                 href="{{ route('admin.coupon.list') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Coupon</span>
             </a>
@@ -87,6 +75,21 @@
         </li>
         <li>
             <a class="app-menu__item"
+                href="{{ route('admin.product.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Product</span>
+            </a>
+        </li>
+      
+       
+         <li>
+            <a class="app-menu__item"
+                href="{{ route('admin.customer.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Customer Management</span>
+            </a>
+        </li>
+       
+        <li>
+            <a class="app-menu__item"
                 href="{{ route('admin.address.list') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Address</span>
             </a>
@@ -99,8 +102,8 @@
         </li>
         <li>
             <a class="app-menu__item"
-                href="{{ route('admin.product.list') }}"><i class="app-menu__icon fa fa-group"></i>
-                <span class="app-menu__label">Product</span>
+                href="{{ route('admin.setting.list') }}"><i class="app-menu__icon fa fa-group"></i>
+                <span class="app-menu__label">Setting</span>
             </a>
         </li>
         <!-- {{-- <li>
