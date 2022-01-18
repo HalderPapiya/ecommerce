@@ -160,9 +160,27 @@ class ProductController extends BaseController
         $brands= Brand::get();
         $sellers= Saller::get();
         $images = Image::where('product_id', $id)->get();
-        dd($images);
+        // dd($images);
         $this->setPageTitle('ProductProduct Management', 'Edit ProductProduct Management : '.$targetProduct->title);
-        return view('admin.product.edit', compact('targetProduct','levelOneCategories','levelTwoCategories','levelThreeCategories','levelFourCategories','levelFiveCategories','brands','sellers'));
+        return view('admin.product.edit', compact('images','targetProduct','levelOneCategories','levelTwoCategories','levelThreeCategories','levelFourCategories','levelFiveCategories','brands','sellers'));
+    }
+
+    public function deleteImage(Request $req)
+    {
+        $rules = [
+            'product_id' => 'required|min:1|numeric',
+            'imageId' => 'required|min:1|numeric',
+        ];
+        $validator = validator()->make($req->all(),$rules);
+        if(!$validator->fails()){
+            $image = Image::where('id',$req->imageId)->where('product_id',$req->product_id)->first();
+            if($image){
+                $image->delete();
+                return response()->json(['error' => false,'message' => 'deleted Success']);
+            }
+            return response()->json(['error' => true,'message' => 'Invalid Object Detected']);
+        }
+        return response()->json(['error' => true,'message' => $validator->errors()->first()]);
     }
 
     /**
@@ -182,10 +200,47 @@ class ProductController extends BaseController
         // ]);
 
         $productId = $request->id;
-        $newDetails = $request->except('_token');
+        // $newDetails = $request->except('_token');
 
-        $product = $this->productRepository->updateProduct($productId, $newDetails);
+        // $product = $this->productRepository->updateProduct($productId, $newDetails);
 
+        // if ($request->hasFile('image5')) {
+
+        //     $fileName = time() . '.' . $request->image5->extension();
+        //     $request->image5->move(public_path('uploads/product/'), $fileName);
+        //     $image5 = 'uploads/product/' . $fileName;
+        //     Product::where('id', $id)->update([
+        //         'image5' => $image5,
+        //     ]);
+        // }
+
+        $product = new Product;
+
+        $product->category_level_one_id = $request['category_level_one_id'];
+        $product->category_level_two_id = $request['category_level_two_id'];
+        $product->category_level_three_id = $request['category_level_three_id'];
+        $product->category_level_four_id =$request['category_level_four_id'];
+        $product->category_level_five_id = $request['category_level_five_id'];
+        $product->seller_id = $request['seller_id'];
+        $product->brand_id = $request['brand_id'];
+        $product->name = $request['name'];
+        $product->description = $request['description'];
+        $product->update();
+        // $product_id = $product->id;
+        if($request->hasfile('image')){
+            $Images = [];
+            foreach ($request->file('image') as $file) {
+                $imagePath = $file->store('product/image');
+                // $imagePath = imageUpload($file, 'ladyAdvertisement');
+                $Images[] = [
+                    'product_id' => $productId,
+                    'image' => $imagePath,
+                ];
+            }
+            if($Images){
+                Image::insert($Images);
+            }
+        }
         if (!$product) {
             return $this->responseRedirectBack('Error occurred while updating product management.', 'error', true, true);
         } else {

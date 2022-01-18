@@ -202,5 +202,6 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::post('/update', [ProductController::class,'update'])->name('admin.product.update');
         Route::post('/updateStatus', [ProductController::class,'updateStatus'])->name('admin.product.updateStatus');
         Route::get('/delete/{id}', [ProductController::class,'destroy'])->name('admin.product.delete');
+        Route::post('product/image_delete', [ProductController::class, 'deleteImage'])->name('product.image.delete');
     });
 });
