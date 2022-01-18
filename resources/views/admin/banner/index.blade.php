@@ -11,6 +11,7 @@ jj
         <a href="{{ route('admin.banner.create')}}" class="btn btn-primary pull-right">Add New</a>
     </div>
     @include('admin.partials.flash')
+
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
@@ -20,7 +21,7 @@ jj
                 <div class="tile-body">
                     <table class="table table-hover custom-data-table-style table-striped" id="sampleTable">
                         <thead>
-                            <tr>
+                        <tr>
                                 <th>Id</th>
                                 <th> Image </th>
                                 <th> Title </th>
@@ -32,7 +33,7 @@ jj
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($banners as $key => $banner)
+                        @foreach($banners as $key => $banner)
                                 <tr>
                                     <td>{{ $banner->id }}</td>
                                     <td>{{ $banner->title }}</td>
@@ -68,9 +69,11 @@ jj
             </div>
         </div>
     </div>
+
+
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>       
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript">$('#sampleTable').DataTable({"ordering": false});</script>
      {{-- New Add --}}

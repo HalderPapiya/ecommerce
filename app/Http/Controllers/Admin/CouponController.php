@@ -131,18 +131,18 @@ class CouponController extends BaseController
             'description' => 'required',
             'expiry_date' => 'required',
             'amount' => 'required',
-            'type' => 'required',
         ]);
 
+       
         $couponId = $request->id;
         $newDetails = $request->except('_token');
 
         $coupon = $this->couponRepository->updateCoupon($couponId, $newDetails);
 
         if (!$coupon) {
-            return $this->responseRedirectBack('Error occurred while updating coupon.', 'error', true, true);
+            return $this->responseRedirectBack('Error occurred while updating category.', 'error', true, true);
         } else {
-            return $this->responseRedirectBack('Coupon has been updated successfully' ,'success',false, false);
+            return $this->responseRedirectBack('Category has been updated successfully' ,'success',false, false);
         }
     }
 

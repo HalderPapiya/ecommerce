@@ -140,7 +140,7 @@ class BannerController extends BaseController
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'redirect_link' => 'required',
+            'redirect_link' => 'required|url',
             'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         if ($request->hasFile('image')) {
