@@ -54,8 +54,15 @@ class AddressController extends BaseController
         // dd($request->all());
         // dd($userId);
         $this->validate($request, [
-            // 'title' => 'required|max:191',
+            'type' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'pin_code' => 'required',
+            'state' => 'required',
+            'country' => 'required',
+            'user_type' => 'required',
         ]);
+
         $userId =  Auth::user()->id;
         
         $addressDetails = $request->except(['_token']);
@@ -109,7 +116,7 @@ class AddressController extends BaseController
     {
         $targetAddress = $this->addressRepository->getAddressById($id);
         
-        $this->setPageTitle('Address', 'Edit Level One Address : '.$targetAddress->title);
+        $this->setPageTitle('Address', 'Edit Address : '.$targetAddress->title);
         return view('admin.address.edit', compact('targetAddress'));
     }
 

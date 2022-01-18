@@ -34,11 +34,12 @@ jj
                             @foreach($brandes as $key => $brand)
                                 <tr>
                                     <td>{{ $brand->id }}</td>
+                                    <td>@if($brand->logo!='')
+                                        <img style="width: 150px;height: 100px;" src="{{URL::to('/').'/brands/'}}{{$brand->logo}}">
+                                        @endif</td>
                                     <td>{{ $brand->name }}</td>
                                     <td>{{ $brand->title }}</td>
-                                    <!-- <td>@if($brand->image!='')
-                                        <img style="width: 150px;height: 100px;" src="{{URL::to('/').'/banners/'}}{{$brand->image}}">
-                                        @endif</td> -->
+                                    
                                     <td>{{ $brand->description }}</td>
                                     <td class="text-center">
                                         <div class="toggle-button-cover margin-auto">

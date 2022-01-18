@@ -94,7 +94,8 @@ class ProductController extends BaseController
     if($request->hasfile('image')){
         $Images = [];
         foreach ($request->file('image') as $file) {
-            $imagePath = $file->store('product/image');
+            $imageName = time().".".$file->getClientOriginalName();
+            $imagePath = $file->move("product/",$imageName);
             // $imagePath = imageUpload($file, 'ladyAdvertisement');
             $Images[] = [
                 'product_id' => $product_id,
@@ -199,22 +200,12 @@ class ProductController extends BaseController
         //     // 'address' => 'required',
         // ]);
 
+        // dd($request->all());
+
         $productId = $request->id;
-        // $newDetails = $request->except('_token');
-
-        // $product = $this->productRepository->updateProduct($productId, $newDetails);
-
-        // if ($request->hasFile('image5')) {
-
-        //     $fileName = time() . '.' . $request->image5->extension();
-        //     $request->image5->move(public_path('uploads/product/'), $fileName);
-        //     $image5 = 'uploads/product/' . $fileName;
-        //     Product::where('id', $id)->update([
-        //         'image5' => $image5,
-        //     ]);
-        // }
-
-        $product = new Product;
+      
+        // $product = new Product;
+        $product = Product::findOrFail($productId);
 
         $product->category_level_one_id = $request['category_level_one_id'];
         $product->category_level_two_id = $request['category_level_two_id'];
@@ -230,7 +221,8 @@ class ProductController extends BaseController
         if($request->hasfile('image')){
             $Images = [];
             foreach ($request->file('image') as $file) {
-                $imagePath = $file->store('product/image');
+                $imageName = time().".".$file->getClientOriginalName();
+                $imagePath = $file->move("product/",$imageName);
                 // $imagePath = imageUpload($file, 'ladyAdvertisement');
                 $Images[] = [
                     'product_id' => $productId,

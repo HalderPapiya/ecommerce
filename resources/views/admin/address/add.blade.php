@@ -44,13 +44,19 @@
                     <div class="form-group">
                         <label class="control-label" for="type">Address Type <span class="m-l-5 text-danger">
                                 *</span></label><br>
-                        <input type="radio" id="home" name="type" value="Home">
+                        <input type="radio" id="type" name="type" value="Home">
                         <label for="home">Home</label>
-                        <input type="radio" id="work" name="type" value="Work">
+                        <input type="radio" id="type" name="type" value="Work">
                         <label for="work">Work</label>
-                        <input type="radio" id="other" name="type" value="Other">
+                        <input type="radio" id="type" name="type" value="Other">
                         <label for="other">Other</label>
+                       
                     </div>
+                    @error('type')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                 </div>
                 <div class="tile-body">
                     <div class="form-group">

@@ -12,7 +12,7 @@
         <div class="col-md-8 mx-auto">
             <div class="tile">
                 <h3 class="tile-title">{{ $subTitle }}</h3>
-                <form action="{{ route('admin.brand.update') }}" method="POST" role="form" enctype="multipart/form-data">
+                <form action="{{ route('admin.brand.update',['id' => $targetBrand->id]) }}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf
                     <div class="tile-body">
                     <input type="hidden" name="id" value="{{ $targetBrand->id }}">

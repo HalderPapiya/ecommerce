@@ -37,6 +37,7 @@ jj
                                 <tr>
                                     <td>{{ $address->id }}</td>
                                     <td>{{ $address->type }}</td>
+                                    <td>{{ $address->street }}</td>
                                     <td>{{ $address->city }}</td>
                                     <td>{{ $address->pin_codce }}</td>
                                     <td>{{ $address->state }}</td>

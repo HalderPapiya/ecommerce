@@ -119,7 +119,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/create', [BannerController::class,'create'])->name('admin.banner.create');
         Route::post('/store', [BannerController::class,'store'])->name('admin.banner.store');
         Route::get('/edit/{id}', [BannerController::class,'edit'])->name('admin.banner.edit');
-        Route::post('/update', [BannerController::class,'update'])->name('admin.banner.update');
+        Route::post('/update/{id}', [BannerController::class,'update'])->name('admin.banner.update');
         Route::post('/updateStatus', [BannerController::class,'updateStatus'])->name('admin.banner.updateStatus');
         Route::get('/delete/{id}', [BannerController::class,'destroy'])->name('admin.banner.delete');
     });
@@ -129,7 +129,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/create', [BlogController::class,'create'])->name('admin.blog.create');
         Route::post('/store', [BlogController::class,'store'])->name('admin.blog.store');
         Route::get('/edit/{id}', [BlogController::class,'edit'])->name('admin.blog.edit');
-        Route::post('/update', [BlogController::class,'update'])->name('admin.blog.update');
+        Route::post('/update/{id}', [BlogController::class,'update'])->name('admin.blog.update');
         Route::post('/updateStatus', [BlogController::class,'updateStatus'])->name('admin.blog.updateStatus');
         Route::get('/delete/{id}', [BlogController::class,'destroy'])->name('admin.blog.delete');
     });
@@ -159,7 +159,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/create', [BrandController::class,'create'])->name('admin.brand.create');
         Route::post('/store', [BrandController::class,'store'])->name('admin.brand.store');
         Route::get('/edit/{id}', [BrandController::class,'edit'])->name('admin.brand.edit');
-        Route::post('/update', [BrandController::class,'update'])->name('admin.brand.update');
+        Route::post('/update/{id}', [BrandController::class,'update'])->name('admin.brand.update');
         Route::post('/updateStatus', [BrandController::class,'updateStatus'])->name('admin.brand.updateStatus');
         Route::get('/delete/{id}', [BrandController::class,'destroy'])->name('admin.brand.delete');
     });

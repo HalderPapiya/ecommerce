@@ -54,34 +54,8 @@ class BrandController extends BaseController
             'name' => 'required|max:191',
             // 'logo' => 'required',
         ]);
-        $brandDetails = $request->only([
-            'name',
-            'logo',
-            'description',
-            'title'
-        ]);
-
-        
-        // if ($request->hasFile('logo')) {
-
-            $fileName = time() . '.' . $request->logo->extension();
-            $request->logo->move(public_path('uploads/'), $fileName);
-            $image = 'uploads/' . $fileName;
-            $banar = new Brand;
-            $banar->title = $request->input('title');
-            $banar->name = $request->input('name');
-            $banar->description = $request->input('description');
-            $banar->logo = $image;
-            // $category->status = 1;
-        $banar->save();
-        // }
-        // $logo = $request->logo;
-        // $imageName = time().".".$logo->getClientOriginalName();
-        // $logo->move("banners/",$imageName);
-        // $uploadedImage = $imageName;
-        // $brandDetails = $uploadedImage;
-        // $brandDetails = $request->except(['_token']);
-        
+       
+        $brandDetails = $request->except(['_token']);
         $brand = $this->brandRepository->createBrand($brandDetails);
 
         if (!$brand) {
@@ -141,35 +115,61 @@ class BrandController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         $this->validate($request, [
             'name' => 'required|max:191',
             // 'logo' => 'required',
         ]);
 
-        $brandId = $request->id;
+        // $brandId = $request->id;
 
-        $newDetails = $request->only([
-            'name',
-            'logo',
-            'description',
-            'title'
+        // $newDetails = $request->only([
+        //     'name',
+        //     'logo',
+        //     'description',
+        //     'title'
+        // ]);
+        // $logo = $collection['image'];
+        // $imageName = time().".".$logo->getClientOriginalName();
+        // $logo->move("banners/",$imageName);
+        // $uploadedImage = $imageName;
+        // $newDetails->image = $uploadedImage;
+        // // $newDetails = $request->except('_token');
+
+        // $brand = $this->brandRepository->updateBrand($brandId, $newDetails);
+
+        // if (!$brand) {
+        //     return $this->responseRedirectBack('Error occurred while updating Brand.', 'error', true, true);
+        // } else {
+        //     return $this->responseRedirectBack('Brand has been updated successfully' ,'success',false, false);
+        // }
+
+
+        
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'name' => 'required',
+            'logo' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $logo = $collection['image'];
-        $imageName = time().".".$logo->getClientOriginalName();
-        $logo->move("banners/",$imageName);
-        $uploadedImage = $imageName;
-        $newDetails->image = $uploadedImage;
-        // $newDetails = $request->except('_token');
-
-        $brand = $this->brandRepository->updateBrand($brandId, $newDetails);
-
-        if (!$brand) {
-            return $this->responseRedirectBack('Error occurred while updating Brand.', 'error', true, true);
-        } else {
-            return $this->responseRedirectBack('Brand has been updated successfully' ,'success',false, false);
+        if ($request->hasFile('logo')) {
+            $imageName = time().".".$request->logo->getClientOriginalName();
+            $request->logo->move("brands/",$imageName);
+            $image = $imageName;
+       
+            Brand::where('id', $id)->update([
+                'logo' => $image,
+            ]);
         }
+
+       
+        Brand::where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'name' => $request->name,
+        ]);
+        return $this->responseRedirectBack('Banner has been updated successfully' ,'success',false, false);
     }
 
     /**

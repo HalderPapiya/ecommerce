@@ -24,7 +24,23 @@ class BlogRepository implements BlogRepositoryInterface
 
     public function createBlog(array $blogIdDetails)
     {
-        return Blog::create($blogIdDetails);
+        // return Blog::create($blogIdDetails);
+
+        $collection = collect($blogIdDetails);
+
+        $Blog = new Blog;
+        $Blog->title = $collection['title'];
+        $Blog->description = $collection['description'];
+
+        $profile_image = $collection['image'];
+        $imageName = time().".".$profile_image->getClientOriginalName();
+        $profile_image->move("blogs/",$imageName);
+        $uploadedImage = $imageName;
+        $Blog->image = $uploadedImage;
+        
+        $Blog->save();
+
+        return $Blog;
     }
 
     public function updateBlog($blogId, array $newDetails) 

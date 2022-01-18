@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Models\Banner;
 use App\Http\Controllers\BaseController;
+use Validator;
 
 class BannerController extends BaseController
 {
@@ -52,9 +53,9 @@ class BannerController extends BaseController
     {
         $this->validate($request, [
             'title' => 'required|max:191',
-            'image' => 'required',
-            'description' => 'required|jpeg,jpg',
-            'url' => 'required|url',
+            'image'     =>  'required|mimes:jpg,jpeg,png|max:1000',
+            'description' => 'required',
+            'redirect_link' => 'required|url',
         ]);
 
         $bannerDetails = $request->except(['_token']);
@@ -118,22 +119,48 @@ class BannerController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' => 'required|max:191',
+        // $this->validate($request, [
+        //     'title' => 'required|max:191',
+        // ]);
+
+        // $bannerId = $request->id;
+        // $newDetails = $request->except('_token');
+
+        // $banner = $this->bannerRepository->updateBanner($bannerId, $newDetails);
+
+        // if (!$banner) {
+        //     return $this->responseRedirectBack('Error occurred while updating Banner.', 'error', true, true);
+        // } else {
+        //     return $this->responseRedirectBack('Banner has been updated successfully' ,'success',false, false);
+        // }
+
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'redirect_link' => 'required',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        $bannerId = $request->id;
-        $newDetails = $request->except('_token');
-
-        $banner = $this->bannerRepository->updateBanner($bannerId, $newDetails);
-
-        if (!$banner) {
-            return $this->responseRedirectBack('Error occurred while updating Banner.', 'error', true, true);
-        } else {
-            return $this->responseRedirectBack('Banner has been updated successfully' ,'success',false, false);
+        if ($request->hasFile('image')) {
+            $imageName = time().".".$request->image->getClientOriginalName();
+            $request->image->move("banners/",$imageName);
+            $image = $imageName;
+       
+            Banner::where('id', $id)->update([
+                'image' => $image,
+            ]);
         }
+
+       
+        Banner::where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'redirect_link' => $request->redirect_link,
+        ]);
+        return $this->responseRedirectBack('Banner has been updated successfully' ,'success',false, false);
+        
     }
 
     /**

@@ -51,6 +51,9 @@ class BlogController extends BaseController
     {
         $this->validate($request, [
             'title' => 'required|max:191',
+            'image' => 'required',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required',
         ]);
 
         $blogDetails = $request->except(['_token']);
@@ -113,22 +116,41 @@ class BlogController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request ,$id)
     {
         $this->validate($request, [
             'title' => 'required|max:191',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required',
         ]);
 
-        $blogId = $request->id;
-        $newDetails = $request->except('_token');
+        // $blogId = $request->id;
+        // $newDetails = $request->except('_token');
 
-        $blog = $this->blogRepository->updateBlog($blogId, $newDetails);
+        // $blog = $this->blogRepository->updateBlog($blogId, $newDetails);
 
-        if (!$blog) {
-            return $this->responseRedirectBack('Error occurred while updating Blog.', 'error', true, true);
-        } else {
-            return $this->responseRedirectBack('Blog has been updated successfully' ,'success',false, false);
+        // if (!$blog) {
+        //     return $this->responseRedirectBack('Error occurred while updating Blog.', 'error', true, true);
+        // } else {
+        //     return $this->responseRedirectBack('Blog has been updated successfully' ,'success',false, false);
+        // }
+
+        if ($request->hasFile('image')) {
+            $imageName = time().".".$request->image->getClientOriginalName();
+            $request->image->move("blogs/",$imageName);
+            $image = $imageName;
+       
+            Blog::where('id', $id)->update([
+                'image' => $image,
+            ]);
         }
+
+       
+        Blog::where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+        return $this->responseRedirectBack('Blog has been updated successfully' ,'success',false, false);
     }
 
     /**

@@ -24,23 +24,23 @@ class BrandRepository implements BrandRepositoryInterface
 
     public function createBrand(array $brandDetails)
     {
-        // $collection = collect($bannerIdDetails);
+        $collection = collect($brandDetails);
 
-        // $Banner = new Banner;
-        // $Banner->title = $collection['title'];
-        // $Banner->description = $collection['description'];
-        // $Banner->redirect_link = $collection['redirect_link'];
+        $Brand = new Brand;
+        $Brand->title = $collection['title'];
+        $Brand->name = $collection['name'];
+        $Brand->description = $collection['description'];
 
-        // $profile_image = $collection['image'];
-        // $imageName = time().".".$profile_image->getClientOriginalName();
-        // $profile_image->move("banners/",$imageName);
-        // $uploadedImage = $imageName;
-        // $Banner->image = $uploadedImage;
+        $profile_image = $collection['logo'];
+        $imageName = time().".".$profile_image->getClientOriginalName();
+        $profile_image->move("brands/",$imageName);
+        $uploadedImage = $imageName;
+        $Brand->logo = $uploadedImage;
         
-        // $Banner->save();
+        $Brand->save();
 
-        // return $Banner;
-        return Brand::create($brandDetails);
+        return $Brand;
+        // return Brand::create($brandDetails);
     }
 
     public function updateBrand($brandId, array $newDetails) 

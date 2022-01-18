@@ -21,7 +21,7 @@
                     </span> --}}
                 </h3>
                 <hr>
-                <form action="{{ route('admin.blog.store') }}" method="POST" role="form">
+                <form action="{{ route('admin.blog.store') }}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf
                     <div class="tile-body">
                         <div class="form-group">
@@ -37,6 +37,13 @@
                             @error('type') {{ $message ?? '' }} @enderror
                         </div>
                     </div> --}}
+                    <div class="tile-body">
+                        <div class="form-group">
+                            <label class="control-label" for="image">Image <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" value="{{ old('image') }}"/>
+                            @error('image') {{ $message ?? '' }} @enderror
+                        </div>
+                    </div>
                     <div class="tile-body">
                         <div class="form-group">
                             <label class="control-label" for="description">Description <span class="m-l-5 text-danger"> *</span></label>

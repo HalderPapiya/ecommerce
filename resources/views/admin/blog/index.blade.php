@@ -35,6 +35,9 @@ jj
                                     <td>{{ $blog->id }}</td>
                                     <td>{{ $blog->title }}</td>
                                     <td>{{ $blog->description }}</td>
+                                    <td>@if($blog->image!='')
+                                        <img style="width: 150px;height: 100px;" src="{{URL::to('/').'/blogs/'}}{{$blog->image}}">
+                                        @endif</td>
                                     <td class="text-center">
                                         <div class="toggle-button-cover margin-auto">
                                             <div class="button-cover">

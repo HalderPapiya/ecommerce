@@ -35,11 +35,27 @@
                     <div class="tile-body">
                     <input type="hidden" name="id" value="{{ $targetAddress->id }}">
                        
+                    <div class="tile-body">
                         <div class="form-group">
-                            <label class="control-label" for="type">Address Type <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('type') is-invalid @enderror" type="text" name="type" id="title" value="{{ old('title', $targetAddress->type) }}"/>
-                            @error('title') {{ $message }} @enderror
+                            <label class="control-label" for="type">Address Type <span class="m-l-5 text-danger">
+                                    *</span></label><br>
+                                    <input type="radio" class="flat" name="type" value="Home"
+                            {{ $targetAddress->type == 'Home' ? 'checked' : '' }}>
+                            <label for="home">Home</label>
+                            <input type="radio" class="flat" name="type" value="Work"
+                            {{ $targetAddress->type == 'Work' ? 'checked' : '' }}>
+                            <label for="work">Work</label>
+                            <input type="radio" class="flat" name="type" value="Other"
+                            {{ $targetAddress->type == 'Other' ? 'checked' : '' }}>
+                            <label for="other">Other</label>
+
                         </div>
+                        @error('type')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                         <div class="form-group">
                             <label class="control-label" for="street">Street <span class="m-l-5 text-danger"> *</span></label>
                             <input class="form-control @error('street') is-invalid @enderror" type="text" name="street" id="street" value="{{ old('street', $targetAddress->street) }}"/>
