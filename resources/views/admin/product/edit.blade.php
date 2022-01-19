@@ -12,7 +12,8 @@
     <div class="col-md-8 mx-auto">
         <div class="tile">
             <h3 class="tile-title">{{ $subTitle }}</h3>
-            <form action="{{ route('admin.product.update', ['id' => $targetProduct->id]) }}" method="POST" role="form" enctype="multipart/form-data">
+            <form action="{{ route('admin.product.update', ['id' => $targetProduct->id]) }}" method="POST" role="form"
+                enctype="multipart/form-data">
                 @csrf
                 <!-- <div class="tile-body">
                     <div class="form-group">
@@ -58,41 +59,44 @@
                     <input type="hidden" name="id" value="{{ $targetProduct->id }}">
 
                     <div class="form-group">
-                        <label for="category_level_one_id">Category One</label>
-                        <input value="{{$targetProduct->levelOneCategory->name}}" readonly>
-                        <select class="form-control @error('category_level_one_id') is-invalid @enderror"
-                            name="category_level_one_id" id="category_level_one_id"
-                            value="{{ old('category_level_one_id') }}">
+                        <label>Category One</label>
+                        <label> : {{$targetProduct->levelOneCategory->name}}</label>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="category_level_one_id">Category Level One</label>
+                        <select class="form-control @error('category_level_one_id') is-invalid @enderror" name="category_level_one_id"
+                            id="category_level_one_id" value="{{ old('category_level_one_id') }}">
                             <option selected disabled>Select one</option>
-                            @foreach ($levelOneCategories as $categoryOne)
-                            <option value="{{$categoryOne->id}}" @if($targetProduct->category_level_one_id ==
-                                $categoryOne->id){{('selected')}}@endif>{{$categoryOne->name}}</option>
+                            @foreach($levelOneCategories as $levelOneCategorie)
+                            <option value="{{$levelOneCategorie->id}}">{{$levelOneCategorie->name}}</option>
                             @endforeach
                         </select>
-                        @error('user_type')
+                        @error('category_level_one_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="category_level_two_id">Category Two</label>
+                        <label> : {{$targetProduct->levelTwoCategory->name}}</label>
 
-
+                    </div>
                     <div class="form-group">
                         <label for="category_level_two_id">Category Two</label>
                         <select class="form-control @error('category_level_two_id') is-invalid @enderror"
                             name="category_level_two_id" id="category_level_two_id"
                             value="{{ old('category_level_two_id') }}">
                             <option selected disabled>Select one</option>
-                            @foreach ($levelTwoCategories as $categoryTwo)
-                            <option value="{{$categoryTwo->id}}" @if($targetProduct->category_level_two_id ==
-                                $categoryTwo->id){{('selected')}}@endif>{{$categoryTwo->name}}</option>
-                            @endforeach
+
                         </select>
-                        @error('category_level_two_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
+                    </div>
+                    <div class="form-group">
+                        <label for="category_level_three_id">Category Three</label>
+                        <label> : {{$targetProduct->levelThreeCategory->name}}</label>
+
                     </div>
                     <div class="form-group">
                         <label for="category_level_three_id">Category Three</label>
@@ -100,16 +104,14 @@
                             name="category_level_three_id" id="category_level_three_id"
                             value="{{ old('category_level_three_id') }}">
                             <option selected disabled>Select one</option>
-                            @foreach ($levelThreeCategories as $categoryThree)
-                            <option value="{{$categoryThree->id}}" @if($targetProduct->category_level_three_id ==
-                                $categoryThree->id){{('selected')}}@endif>{{$categoryThree->name}}</option>
-                            @endforeach
+
                         </select>
-                        @error('category_level_three_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
+                    </div>
+                    <div class="form-group">
+                        <label for="category_level_four_id">Category Four</label>
+                        <label> : {{$targetProduct->levelFourCategory->name}}</label>
+
                     </div>
                     <div class="form-group">
                         <label for="category_level_four_id">Category Four</label>
@@ -117,16 +119,14 @@
                             name="category_level_four_id" id="category_level_four_id"
                             value="{{ old('category_level_four_id') }}">
                             <option selected disabled>Select one</option>
-                            @foreach ($levelFourCategories as $categoryFour)
-                            <option value="{{$categoryFour->id}}" @if($targetProduct->category_level_four_id ==
-                                $categoryFour->id){{('selected')}}@endif>{{$categoryFour->name}}</option>
-                            @endforeach
+
                         </select>
-                        @error('category_level_four_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
+                    </div>
+                    <div class="form-group">
+                        <label for="category_level_five_id">Category Five</label>
+                        <label> : {{$targetProduct->levelFiveCategory->name}}</label>
+
                     </div>
                     <div class="form-group">
                         <label for="category_level_five_id">Category Five</label>
@@ -134,16 +134,9 @@
                             name="category_level_five_id" id="category_level_five_id"
                             value="{{ old('category_level_five_id') }}">
                             <option selected disabled>Select one</option>
-                            @foreach ($levelFiveCategories as $categoryFive)
-                            <option value="{{$categoryFive->id}}" @if($targetProduct->category_level_five_id ==
-                                $categoryFive->id){{('selected')}}@endif>{{$categoryFive->name}}</option>
-                            @endforeach
+
                         </select>
-                        @error('category_level_five_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
                     </div>
                     <div class="form-group">
                         <label for="seller_id">Seller</label>
@@ -322,6 +315,96 @@ $(document).on('click', '.deleteImage', function() {
             }
         });
     }
+});
+
+$(document).ready(function() {
+    $('#category_level_one_id').on('change', function() {
+        var categoryId = $('#category_level_one_id').val();
+        $.ajax({
+            url: "{{route('admin.product.manage.category')}}",
+            type: 'POST',
+            data: {
+                _token: '{{csrf_token()}}',
+                val: categoryId
+            },
+            success: function(result) {
+                var options =
+                    '<option value="" selected="" hidden="">Select Level-Two-Category</option>';
+                $.each(result.sub, function(key, val) {
+                    options += '<option value="' + val.id + '">' + val.name +
+                        '</option>';
+                });
+                $('#category_level_two_id').empty().append(options);
+                // $res->success = false;
+            }
+        });
+    });
+
+    $('#category_level_two_id').on('change', function() {
+        var categoryId = $('#category_level_two_id').val();
+        $.ajax({
+            url: "{{route('admin.product.manage.category.level-two')}}",
+            type: 'POST',
+            data: {
+                _token: '{{csrf_token()}}',
+                val: categoryId
+            },
+            success: function(result) {
+                var options =
+                    '<option value="" selected="" hidden="">Select Level-Three-Category</option>';
+                $.each(result.sub, function(key, val) {
+                    options += '<option value="' + val.id + '">' + val.name +
+                        '</option>';
+                });
+                $('#category_level_three_id').empty().append(options);
+                // $res->success = false;
+            }
+        });
+    });
+
+    $('#category_level_three_id').on('change', function() {
+        var categoryId = $('#category_level_three_id').val();
+        $.ajax({
+            url: "{{route('admin.product.manage.category.level-three')}}",
+            type: 'POST',
+            data: {
+                _token: '{{csrf_token()}}',
+                val: categoryId
+            },
+            success: function(result) {
+                var options =
+                    '<option value="" selected="" hidden="">Select Level-Four-Category</option>';
+                $.each(result.sub, function(key, val) {
+                    options += '<option value="' + val.id + '">' + val.name +
+                        '</option>';
+                });
+                $('#category_level_four_id').empty().append(options);
+                // $res->success = false;
+            }
+        });
+    });
+
+    $('#category_level_four_id').on('change', function() {
+        var categoryId = $('#category_level_four_id').val();
+        $.ajax({
+            url: "{{route('admin.product.manage.category.level-four')}}",
+            type: 'POST',
+            data: {
+                _token: '{{csrf_token()}}',
+                val: categoryId
+            },
+            success: function(result) {
+                var options =
+                    '<option value="" selected="" hidden="">Select Level-Five-Category</option>';
+                $.each(result.sub, function(key, val) {
+                    options += '<option value="' + val.id + '">' + val.name +
+                        '</option>';
+                });
+                $('#category_level_five_id').empty().append(options);
+                // $res->success = false;
+            }
+        });
+    });
 });
 </script>
 @endpush
