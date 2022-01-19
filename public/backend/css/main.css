@@ -13010,7 +13010,8 @@ be a descendant of the grid when it is being dragged.
   padding-bottom: 40px;
 }
 .app-menu li{
-  border-bottom: #805805 1px dashed;
+  border-bottom: #805805 1px solid;
+  background-color: #e0a216;
 }
 
 .app-menu__item {

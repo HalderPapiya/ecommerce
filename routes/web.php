@@ -164,14 +164,14 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
         Route::get('/delete/{id}', [BrandController::class,'destroy'])->name('admin.brand.delete');
     });
 
-    Route::group(['prefix' => 'saller-management'], function() {
-        Route::get('/', [SellerController::class,'index'])->name('admin.saller-management.list');
-        Route::get('/create', [SellerController::class,'create'])->name('admin.saller-management.create');
-        Route::post('/store', [SellerController::class,'store'])->name('admin.saller-management.store');
-        Route::get('/edit/{id}', [SellerController::class,'edit'])->name('admin.saller-management.edit');
-        Route::post('/update', [SellerController::class,'update'])->name('admin.saller-management.update');
-        Route::post('/updateStatus', [SellerController::class,'updateStatus'])->name('admin.saller-management.updateStatus');
-        Route::get('/delete/{id}', [SellerController::class,'destroy'])->name('admin.saller-management.delete');
+    Route::group(['prefix' => 'seller-management'], function() {
+        Route::get('/', [SellerController::class,'index'])->name('admin.seller-management.list');
+        Route::get('/create', [SellerController::class,'create'])->name('admin.seller-management.create');
+        Route::post('/store', [SellerController::class,'store'])->name('admin.seller-management.store');
+        Route::get('/edit/{id}', [SellerController::class,'edit'])->name('admin.seller-management.edit');
+        Route::post('/update', [SellerController::class,'update'])->name('admin.seller-management.update');
+        Route::post('/updateStatus', [SellerController::class,'updateStatus'])->name('admin.seller-management.updateStatus');
+        Route::get('/delete/{id}', [SellerController::class,'destroy'])->name('admin.seller-management.delete');
     });
 
     Route::group(['prefix' => 'address'], function() {

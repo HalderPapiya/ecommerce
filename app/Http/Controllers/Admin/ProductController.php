@@ -15,7 +15,7 @@ use App\Models\LevelThreeCategory;
 use App\Models\LevelFourCategory;
 use App\Models\LevelFiveCategory;
 use App\Models\Brand;
-use App\Models\Saller;
+use App\Models\Seller;
 use App\Models\Image;
 
 
@@ -34,7 +34,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $this->setPageTitle('Product Management', 'List of product management');
+        $this->setPageTitle('Product', 'List of product');
         $products = $this->productRepository->getAllProducts();
         return view('admin.product.index', compact('products'));
 
@@ -47,25 +47,14 @@ class ProductController extends BaseController
      */
     public function create()
     {
-        $this->validate($request, [
-            'category_level_one_id' => 'required',
-            'category_level_two_id' => 'required',
-            'category_level_three_id' => 'required',
-            'category_level_four_id' => 'required',
-            'category_level_five_id' => 'required',
-            'brand_id' => 'required',
-            'seller_id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-        ]);
-        $this->setPageTitle('ProductProduct', 'Add Product');
+        $this->setPageTitle('Product', 'Add Product');
         $levelOneCategories= LevelOneCategory::get();
         $levelTwoCategories= LevelTwoCategory::get();
         $levelThreeCategories= LevelThreeCategory::get();
         $levelFourCategories= LevelFourCategory::get();
         $levelFiveCategories= LevelFiveCategory::get();
         $brands= Brand::get();
-        $sellers= Saller::get();
+        $sellers= Seller::get();
         return view('admin.product.add',compact('levelOneCategories','levelTwoCategories','levelThreeCategories','levelFourCategories','levelFiveCategories','brands','sellers'));
     }
 
@@ -128,10 +117,10 @@ class ProductController extends BaseController
 
 
         if (!$product) {
-            return $this->responseRedirectBack('Error occurred while creating Product Management.', 'error', true, true);
+            return $this->responseRedirectBack('Error occurred while creating Product.', 'error', true, true);
         }
         else{
-            return $this->responseRedirect('admin.product.list', 'Product Management has been created successfully' ,'success',false, false);
+            return $this->responseRedirect('admin.product.list', 'Product has been created successfully' ,'success',false, false);
         }
     }
 
@@ -159,7 +148,7 @@ class ProductController extends BaseController
         $product = $this->productRepository->updateProductStatus($productId,$newDetails);
 
         if ($product) {
-            return response()->json(array('message'=>'Product Management status has been successfully updated'));
+            return response()->json(array('message'=>'Product status has been successfully updated'));
         }
     }
     /**
@@ -178,10 +167,10 @@ class ProductController extends BaseController
         $levelFourCategories= LevelFourCategory::get();
         $levelFiveCategories= LevelFiveCategory::get();
         $brands= Brand::get();
-        $sellers= Saller::get();
+        $sellers= Seller::get();
         $images = Image::where('product_id', $id)->get();
         // dd($images);
-        $this->setPageTitle('ProductProduct Management', 'Edit ProductProduct Management : '.$targetProduct->title);
+        $this->setPageTitle('ProductProduct', 'Edit ProductProduct : '.$targetProduct->title);
         return view('admin.product.edit', compact('images','targetProduct','levelOneCategories','levelTwoCategories','levelThreeCategories','levelFourCategories','levelFiveCategories','brands','sellers'));
     }
 
@@ -257,9 +246,9 @@ class ProductController extends BaseController
             }
         }
         if (!$product) {
-            return $this->responseRedirectBack('Error occurred while updating product management.', 'error', true, true);
+            return $this->responseRedirectBack('Error occurred while updating product.', 'error', true, true);
         } else {
-            return $this->responseRedirectBack('Product Management has been updated successfully' ,'success',false, false);
+            return $this->responseRedirectBack('Product has been updated successfully' ,'success',false, false);
         }
     }
 

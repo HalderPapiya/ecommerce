@@ -21,7 +21,7 @@
                     </span> --}}
                 </h3>
                 <hr>
-                <form action="{{ route('admin.saller-management.store') }}" method="POST" role="form">
+                <form action="{{ route('admin.seller-management.store') }}" method="POST" role="form">
                     @csrf
                     <div class="tile-body">
                         <div class="form-group">
@@ -45,9 +45,9 @@
                         </div>
                     </div>
                     <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save Saller Management</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save Seller Management</button>
                         &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-secondary" href="{{ route('admin.saller-management.list') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                        <a class="btn btn-secondary" href="{{ route('admin.seller-management.list') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                     </div>
                 </form>
             </div>

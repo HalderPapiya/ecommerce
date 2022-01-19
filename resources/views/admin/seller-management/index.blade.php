@@ -8,7 +8,7 @@ jj
             <p>{{ $subTitle }}</p>
             {{-- <p>Category List</p> --}}
         </div>
-        <a href="{{ route('admin.saller-management.create')}}" class="btn btn-primary pull-right">Add New</a>
+        <a href="{{ route('admin.seller-management.create')}}" class="btn btn-primary pull-right">Add New</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -30,17 +30,17 @@ jj
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($sallers as $key => $saller)
+                            @foreach($sellers as $key => $seller)
                                 <tr>
-                                    <td>{{ $saller->id }}</td>
-                                    <td>{{ $saller->name }}</td>
-                                    <td>{{ $saller->email }}</td>
-                                    <td>{{ $saller->phone }}</td>
+                                    <td>{{ $seller->id }}</td>
+                                    <td>{{ $seller->name }}</td>
+                                    <td>{{ $seller->email }}</td>
+                                    <td>{{ $seller->phone }}</td>
                                     <td class="text-center">
                                         <div class="toggle-button-cover margin-auto">
                                             <div class="button-cover">
                                                 <div class="button-togglr b2" id="button-11">
-                                                    <input id="toggle-block" type="checkbox" name="status" class="checkbox" data-saller_id="{{ $saller['id'] }}" {{ $saller['status'] == 1 ? 'checked' : '' }}>
+                                                    <input id="toggle-block" type="checkbox" name="status" class="checkbox" data-seller_id="{{ $seller['id'] }}" {{ $seller['status'] == 1 ? 'checked' : '' }}>
                                                     <div class="knobs"><span>Inactive</span></div>
                                                     <div class="layer"></div>
                                                 </div>
@@ -50,8 +50,8 @@ jj
                                     <td class="text-center">
                                     
                                         <div class="btn-group" role="group" aria-label="Second group">
-                                            <a href="{{ url('admin/saller-management/edit', $saller['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></a>
-                                             <a href="javascript: void(0)" data-id="{{$saller['id']}}" class="sa-remove btn btn-sm btn-danger edit-btn"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ url('admin/seller-management/edit', $seller['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></a>
+                                             <a href="javascript: void(0)" data-id="{{$seller['id']}}" class="sa-remove btn btn-sm btn-danger edit-btn"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,7 +71,7 @@ jj
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
     <script type="text/javascript">
     $('.sa-remove').on("click",function(){
-        var sallerid = $(this).data('id');
+        var sellerid = $(this).data('id');
         swal({
           title: "Are you sure?",
           text: "Your will not be able to recover the record!",
@@ -83,7 +83,7 @@ jj
         },
         function(isConfirm){
           if (isConfirm) {
-            window.location.href = "saller-management/delete/"+sallerid;
+            window.location.href = "seller-management/delete/"+sellerid;
             } else {
               swal("Cancelled", "Record is safe", "error");
             }
@@ -92,7 +92,7 @@ jj
     </script>
     <script type="text/javascript">
         $('input[id="toggle-block"]').change(function() {
-            var saller_id = $(this).data('saller_id');
+            var seller_id = $(this).data('seller_id');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var check_status = 0;
           if($(this).is(":checked")){
@@ -103,8 +103,8 @@ jj
           $.ajax({
                 type:'POST',
                 dataType:'JSON',
-                url:"{{route('admin.saller-management.updateStatus')}}",
-                data:{ _token: CSRF_TOKEN, id:saller_id, status:check_status},
+                url:"{{route('admin.seller-management.updateStatus')}}",
+                data:{ _token: CSRF_TOKEN, id:seller_id, status:check_status},
                 success:function(response)
                 {
                   swal("Success!", response.message, "success");

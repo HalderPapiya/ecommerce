@@ -20,7 +20,7 @@ class CreateCouponsTable extends Migration
             $table->text('description');
             $table->date('expiry_date');
             $table->string('type')->comment('parcentage, amount_deduct');
-            $table->float('amont',5,2);
+            $table->float('amount',5,2);
             $table->tinyInteger('status')->default('1')->comment('1 = Active, 0 = Inactive');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

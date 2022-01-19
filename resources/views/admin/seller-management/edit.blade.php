@@ -12,34 +12,34 @@
         <div class="col-md-8 mx-auto">
             <div class="tile">
                 <h3 class="tile-title">{{ $subTitle }}</h3>
-                <form action="{{ route('admin.saller-management.update') }}" method="POST" role="form" enctype="multipart/form-data">
+                <form action="{{ route('admin.seller-management.update') }}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf
                     <div class="tile-body">
-                    <input type="hidden" name="id" value="{{ $targetSaller->id }}">
+                    <input type="hidden" name="id" value="{{ $targetseller->id }}">
                         <div class="form-group">
                             <label class="control-label" for="name">Name <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name', $targetSaller->name) }}"/>
+                            <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name', $targetseller->name) }}"/>
                             @error('name') {{ $message }} @enderror
                         </div>
                     </div>
                     <div class="tile-body">
                         <div class="form-group">
                             <label class="control-label" for="email">Email <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" id="email" value="{{ old('email', $targetSaller->email) }}"/>
+                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" id="email" value="{{ old('email', $targetseller->email) }}"/>
                             @error('email') {{ $message }} @enderror
                         </div>
                     </div>
                     <div class="tile-body">
                         <div class="form-group">
                             <label class="control-label" for="phone">Phone <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" id="phone" value="{{ old('phone', $targetSaller->phone) }}"/>
+                            <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" id="phone" value="{{ old('phone', $targetseller->phone) }}"/>
                             @error('phone') {{ $message }} @enderror
                         </div>
                     </div>
                     <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Saller Management</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update seller Management</button>
                         &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-secondary" href="{{ route('admin.saller-management.list') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                        <a class="btn btn-secondary" href="{{ route('admin.seller-management.list') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                     </div>
                 </form>
             </div>

@@ -57,8 +57,8 @@ class CouponController extends BaseController
             'title' => 'required|max:191',
             'coupon_code' => 'required',
             'description' => 'required',
-            'expiry_date' => 'required',
-            'amount' => 'required',
+            'expiry_date' => 'required|date_format:Y-m-d',
+            'amount' => 'required|numeric|between:0,99.99',
             'type' => 'required',
         ]);
        

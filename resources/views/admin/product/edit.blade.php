@@ -59,6 +59,7 @@
 
                     <div class="form-group">
                         <label for="category_level_one_id">Category One</label>
+                        <input value="{{$targetProduct->levelOneCategory->name}}" readonly>
                         <select class="form-control @error('category_level_one_id') is-invalid @enderror"
                             name="category_level_one_id" id="category_level_one_id"
                             value="{{ old('category_level_one_id') }}">

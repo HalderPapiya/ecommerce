@@ -4,19 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Interfaces\SallerRepositoryInterface;
+use App\Interfaces\sellerRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Models\Saller;
+use App\Models\Seller;
 use App\Http\Controllers\BaseController;
 
 class SellerController extends BaseController
 {
-    private SallerRepositoryInterface $sallerRepository;
+    private sellerRepositoryInterface $sellerRepository;
 
-    public function __construct(SallerRepositoryInterface $sallerRepository) 
+    public function __construct(sellerRepositoryInterface $sellerRepository) 
     {
-        $this->sallerRepository = $sallerRepository;
+        $this->sellerRepository = $sellerRepository;
     }
     /**
      * Display a listing of the resource.
@@ -25,9 +25,9 @@ class SellerController extends BaseController
      */
     public function index()
     {
-        $this->setPageTitle('Saller Management', 'List of saller management');
-        $sallers = $this->sallerRepository->getAllSallers();
-        return view('admin.saller-management.index', compact('sallers'));
+        $this->setPageTitle('Seller', 'List of seller');
+        $sellers = $this->sellerRepository->getAllsellers();
+        return view('admin.seller-management.index', compact('sellers'));
 
     }
 
@@ -38,8 +38,8 @@ class SellerController extends BaseController
      */
     public function create()
     {
-        $this->setPageTitle('Saller', 'Add sallers');
-        return view('admin.saller-management.add');
+        $this->setPageTitle('Seller', 'Add seller');
+        return view('admin.seller-management.add');
     }
 
     /**
@@ -56,15 +56,15 @@ class SellerController extends BaseController
             'phone' => 'required'
         ]);
 
-        $sallerDetails = $request->except(['_token']);
+        $sellerDetails = $request->except(['_token']);
         
-        $saller = $this->sallerRepository->createSaller($sallerDetails);
+        $seller = $this->sellerRepository->createseller($sellerDetails);
 
-        if (!$saller) {
-            return $this->responseRedirectBack('Error occurred while creating Saller Management.', 'error', true, true);
+        if (!$seller) {
+            return $this->responseRedirectBack('Error occurred while creating Seller.', 'error', true, true);
         }
         else{
-            return $this->responseRedirect('admin.saller-management.list', 'Saller Management has been created successfully' ,'success',false, false);
+            return $this->responseRedirect('admin.seller-management.list', 'Seller has been created successfully' ,'success',false, false);
         }
     }
 
@@ -86,13 +86,13 @@ class SellerController extends BaseController
      */
     public function updateStatus(Request $request){
 
-        $sallerId = $request->id;
+        $sellerId = $request->id;
         $newDetails = $request->except('_token');
 
-        $saller = $this->sallerRepository->updateSallerStatus($sallerId,$newDetails);
+        $seller = $this->sellerRepository->updatesellerStatus($sellerId,$newDetails);
 
-        if ($saller) {
-            return response()->json(array('message'=>'Saller Management status has been successfully updated'));
+        if ($seller) {
+            return response()->json(array('message'=>'Seller status has been successfully updated'));
         }
     }
     /**
@@ -103,10 +103,10 @@ class SellerController extends BaseController
      */
     public function edit($id)
     {
-        $targetSaller = $this->sallerRepository->getSallerById($id);
+        $targetseller = $this->sellerRepository->getsellerById($id);
         
-        $this->setPageTitle('Saller Management', 'Edit Saller Management : '.$targetSaller->title);
-        return view('admin.saller-management.edit', compact('targetSaller'));
+        $this->setPageTitle('Seller Management', 'Edit Seller : '.$targetseller->title);
+        return view('admin.seller-management.edit', compact('targetseller'));
     }
 
     /**
@@ -125,15 +125,15 @@ class SellerController extends BaseController
             // 'address' => 'required',
         ]);
 
-        $sallerId = $request->id;
+        $sellerId = $request->id;
         $newDetails = $request->except('_token');
 
-        $saller = $this->sallerRepository->updateSaller($sallerId, $newDetails);
+        $seller = $this->sellerRepository->updateseller($sellerId, $newDetails);
 
-        if (!$saller) {
-            return $this->responseRedirectBack('Error occurred while updating saller management.', 'error', true, true);
+        if (!$seller) {
+            return $this->responseRedirectBack('Error occurred while updating seller management.', 'error', true, true);
         } else {
-            return $this->responseRedirectBack('Saller Management has been updated successfully' ,'success',false, false);
+            return $this->responseRedirectBack('Seller has been updated successfully' ,'success',false, false);
         }
     }
 
@@ -145,12 +145,12 @@ class SellerController extends BaseController
      */
     public function destroy($id)
     {
-        $saller = $this->sallerRepository->deleteSaller($id);
+        $seller = $this->sellerRepository->deleteseller($id);
 
-        if (!$saller) {
-            return $this->responseRedirectBack('Error occurred while deleting saller.', 'error', true, true);
+        if (!$seller) {
+            return $this->responseRedirectBack('Error occurred while deleting seller.', 'error', true, true);
         } else {
-            return $this->responseRedirect('admin.saller-management.list', 'Saller has been deleted successfully' ,'success',false, false);
+            return $this->responseRedirect('admin.seller-management.list', 'Seller has been deleted successfully' ,'success',false, false);
         }
     }
 }
