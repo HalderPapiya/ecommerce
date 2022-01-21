@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/main.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/font-awesome/4.7.0/css/font-awesome.min.css') }}"/>
-    <title>Login - {{ config('app.name') }}</title>
+    <title>Login - eCommerce</title>
 </head>
 <body>
 <section class="material-half-bg">
@@ -14,7 +14,7 @@
 </section>
 <section class="login-content">
     <div class="logo">
-        <h1>{{ config('app.name') }}</h1>
+        <h1>eCommerce</h1>
     </div>
     <div class="login-box">
         <form class="login-form" action="{{ url('admin/login') }}" method="POST" role="form">
