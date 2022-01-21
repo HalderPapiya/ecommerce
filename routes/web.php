@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::get('admin/login', [LoginController::class,'showLoginForm'])->name('admin.login');
+Route::post('admin/login', [LoginController::class,'login']);
+Route::post('logout', [LoginController::class,'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('admin/profile', [HomeController::class,'userProfile'])->name('user.profile');

@@ -17,7 +17,7 @@
         <h1>{{ config('app.name') }}</h1>
     </div>
     <div class="login-box">
-        <form class="login-form" action="{{ route('login') }}" method="POST" role="form">
+        <form class="login-form" action="{{ url('admin/login') }}" method="POST" role="form">
             @if(session()->has('verified'))
                 <div class="alert alert-success">
                     Verified successfully
