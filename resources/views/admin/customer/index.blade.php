@@ -1,4 +1,3 @@
-jj
 @extends('admin.app')
 @section('title')  @endsection
 @section('content')
