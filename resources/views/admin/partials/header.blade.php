@@ -1,3 +1,6 @@
+@php
+$user = App\Models\Admin::first();
+@endphp
 <header class="app-header">
     <!-- <a class="app-header__logo" href="#">{{ config('app.name') }}</a> -->
     <a class="app-header__logo" href="#">eCommerce</a>
@@ -56,10 +59,10 @@
         </li> -->
         <!-- User Menu-->
         <li class="dropdown">
-            <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i> {{ Auth::user()->name }} <span><i class="treeview-indicator fa fa-angle-down" style="font-size: 15px;"></i></span></a>
+            <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i> {{ $user->name }} <span><i class="treeview-indicator fa fa-angle-down" style="font-size: 15px;"></i></span></a>
             <ul class="dropdown-menu settings-menu dropdown-menu-right account-dropdown">
                 <li>
-                    <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fa fa-user fa-lg"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="fa fa-user fa-lg"></i> Profile</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();

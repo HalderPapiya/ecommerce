@@ -30,10 +30,10 @@
         <div class="col-md-12">
             <div class="tab-content">
                 <div class="tab-pane active" id="general">
-                    @include('auth.user.includes.general')
+                    @include('admin.auth.profile.includes.general')
                 </div>
                 <div class="tab-pane fade" id="password">
-                    @include('auth.user.includes.password')
+                    @include('admin.auth.profile.includes.password')
                 </div>
             </div>
         </div>

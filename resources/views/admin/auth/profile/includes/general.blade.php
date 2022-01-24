@@ -1,5 +1,5 @@
 <div class="tile">
-    <form action="{{ route('user.profile.save') }}" method="POST" role="form" id="formgeneral">
+    <form action="{{ route('admin.profile.save') }}" method="POST" role="form" id="formgeneral">
         @csrf
         <h3 class="tile-title">General Settings</h3>
         <hr>

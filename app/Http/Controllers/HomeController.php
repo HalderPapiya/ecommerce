@@ -37,7 +37,7 @@ class HomeController extends Controller
         // $user = Auth::user();
         $user = Admin::where('id', Auth::user()->id)->first();
         // dd($user);
-        return view('auth.user.profile', compact('user'));
+        return view('admin.auth.profile.profile', compact('user'));
         
 
     }
